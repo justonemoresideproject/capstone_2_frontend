@@ -1,0 +1,101 @@
+.navMenu {
+    align-content: flex-start;
+    justify-content: space-evenly;
+    
+    list-style-type: none;
+    display: inline-flex;
+
+    background-color: black;
+
+    width: 100vw;
+    top: 0;
+
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+
+    overflow: hidden;
+}
+
+.navMenu .navItem {
+    text-align:center;
+
+    text-decoration: none;
+    font-size: 25px;
+
+    align-self: baseline;
+    align-content: flex-start;
+
+    /* margin-bottom: 0px;
+    margin-top: 0px;
+    padding-right: 15px;
+    padding-left: 15px;
+
+    padding-top: 15px;
+    padding-bottom: 15px; */
+
+    height: inherit;
+
+    width: 20vw;
+    
+    /* width: 50px;
+    height: 100%; */
+}
+
+.navMenu .navItem:hover {
+    background-color: white;
+}
+
+.navButton {
+    width: 100%;
+    height: 100%;
+
+    padding: 0px;
+    margin: 0px;
+
+    background: transparent;
+    color: purple;
+
+    font-size: 25px;
+
+    box-shadow: none;
+    border: none;
+}
+
+.dropDown {
+    display: none;
+    list-style-type: none;
+}
+
+.dropDown-show {
+    display: block;
+    list-style-type: none;
+
+    position: absolute;
+
+    padding: 0px;
+    margin: 0px;
+
+    width:inherit;
+    overflow: hidden;
+
+    background-color: black;
+}
+
+.dropDown-show > .navItem {
+    position: relative;
+
+    width: 100%;
+}
+
+.dropDown-show > .navItem > .navLink {
+    width: inherit;
+    margin: 0px;
+    padding: 0px;
+}
+
+.dropDown-show > .navItem:hover {
+    background-color: white;
+    width: 100%;
+}
