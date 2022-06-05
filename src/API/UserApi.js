@@ -1,4 +1,4 @@
-const CommonApi = require('./CommonApi')
+import CommonApi from './CommonApi'
 
 class UserApi {
     static async getOrders(userId) {
@@ -26,4 +26,4 @@ class UserApi {
     }
 }
 
-module.exports = { UserApi }
+export default UserApi

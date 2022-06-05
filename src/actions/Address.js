@@ -1,10 +1,10 @@
 import { ADD_ADDRESS, REMOVE_ADDRESS } from './types'
 
-const { create, remove, get, all } = require('../API/AddressApi')
+import AddressApi from '../API/AddressApi'
 
 function getAddressFromApi(id) {
     return async function(dispatch) {
-        const res = await get(id)
+        const res = await AddressApi.get(id)
 
         dispatch(addAddress(res.address))
     }
@@ -12,7 +12,7 @@ function getAddressFromApi(id) {
 
 function getAddressesFromApi() {
     return async function(dispatch) {
-        const res = await all()
+        const res = await AddressApi.all()
 
         res.addresses.forEach(address => {
             dispatch(addAddress(address))

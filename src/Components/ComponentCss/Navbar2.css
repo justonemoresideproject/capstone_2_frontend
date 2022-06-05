@@ -18,6 +18,18 @@
     overflow: hidden;
 }
 
+.navLink {
+    color:rgb(133, 79, 21);
+}
+
+.navLink:hover{
+    color: rgb(159, 158, 158);
+}
+
+.navButton:hover{
+    color: rgb(159, 158, 158);
+}
+
 .navMenu .navItem {
     text-align:center;
 
@@ -26,6 +38,8 @@
 
     align-self: baseline;
     align-content: flex-start;
+
+    color:rgb(133, 79, 21);
 
     /* margin-bottom: 0px;
     margin-top: 0px;
@@ -43,9 +57,9 @@
     height: 100%; */
 }
 
-.navMenu .navItem:hover {
-    background-color: white;
-}
+/* .navMenu .navItem:hover {
+    color: white;
+} */
 
 .navButton {
     width: 100%;
@@ -55,7 +69,7 @@
     margin: 0px;
 
     background: transparent;
-    color: purple;
+    color:rgb(133, 79, 21);
 
     font-size: 25px;
 
@@ -80,7 +94,7 @@
     width:inherit;
     overflow: hidden;
 
-    background-color: black;
+    background-color: white;
 }
 
 .dropDown-show > .navItem {
@@ -95,7 +109,7 @@
     padding: 0px;
 }
 
-.dropDown-show > .navItem:hover {
-    background-color: white;
+/* .dropDown-show > .navItem:hover {
+    background-color: rgb(133, 79, 21);
     width: 100%;
-}
+} */

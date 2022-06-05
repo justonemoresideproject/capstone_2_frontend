@@ -1,6 +1,6 @@
 const TOKEN = ''
 const PORT = 3003
-// const BASE_URL = `https://localhost:${PORT}`
-const BASE_URL = `https://git.heroku.com/agglet-backend.git`
+const BASE_URL = `http://localhost:${PORT}`
+// const BASE_URL = `https://git.heroku.com/agglet-backend.git`
 
-module.exports = {TOKEN, BASE_URL}
+export {TOKEN, BASE_URL}

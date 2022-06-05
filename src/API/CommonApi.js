@@ -22,4 +22,4 @@ class CommonApi {
     }
 }
 
-export { CommonApi }
+export default CommonApi

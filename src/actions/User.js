@@ -1,10 +1,12 @@
-import { SET_FIRST_NAME, SET_LAST_NAME, SET_FULLNAME, SET_USER_ID, SET_USERNAME, RESET_USER } from './types'
+import { SET_FIRST_NAME, SET_LAST_NAME, SET_FULLNAME, SET_IS_ADMIN, SET_AUTH_INFO
+    , SET_USER_ID, SET_USERNAME, SET_USER_INFO, SET_PHONE_NUM, SET_EMAIL, RESET_USER } from './types'
 import { addOrder } from './Order'
-import { getOrders, getProfile, getAddresses, editProfile } from '../API/UserApi'
+import UserApi from '../API/UserApi'
+// import { getOrders, getProfile, getAddresses, editProfile } from '../API/UserApi'
 
 function getUserOrdersFromApi(id) {
     return async function(dispatch) {
-        const res = getOrders(id)
+        const res = await UserApi.getOrders(id)
 
         if(res.orders) {
             res.orders.forEach(order => {
@@ -19,15 +21,17 @@ function getUserOrdersFromApi(id) {
 //     return async function(dispatch) {
 //         const res = getAddresses(id)
 
-//         if(res.addresses) {
-            
+//         if(res.addresses.length > 1) {
+//             res.addresses.forEach(address => {
+
+//             })
 //         }
 //     }
 // }
 
 function getUserProfileFromApi(id) {
     return async function(dispatch) {
-        const res = getProfile(id)
+        const res = await UserApi.getProfile(id)
 
         if(res.user) {
             dispatch(setUserInfo(res.user))
@@ -42,6 +46,14 @@ function setUserInfo(info) {
 
 function setUserId(id) {
     return { type: SET_USER_ID, payload: id }
+}
+
+function setIsAdmin(isAdmin) {
+    return { type: SET_IS_ADMIN, payload: isAdmin }
+}
+
+function setAuthInfo(authInfo) {
+    return { type: SET_AUTH_INFO, payload: authInfo }
 }
 
 function setUsername(username) {
@@ -69,7 +81,9 @@ function setEmail(email) {
 }
 
 function resetUser() {
-    return { type: RESET_USER, payload: {} }
+    return { type: RESET_USER }
 }
 
-export { setUserInfo, setUserId, setPhoneNumber, setEmail, setFirstName, setLastName, setFullName}
+export { 
+    resetUser, setUserInfo, setUserId, setIsAdmin, setAuthInfo, setPhoneNumber, setEmail, setFirstName, setLastName, setFullName 
+}

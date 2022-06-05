@@ -1,7 +1,7 @@
 import { React, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { addProductToApi } from '../actions/Product'
+import { addProductToApi } from '../../actions/Product'
 
 function NewProduct() {
     const INITIAL_STATE = {}

@@ -1,4 +1,4 @@
-const CommonApi = require('./CommonApi')
+import CommonApi from './CommonApi'
 
 class AddressApi {
     static async create(AddressInfo) {
@@ -24,4 +24,4 @@ class AddressApi {
     }
 }
 
-module.exports = { AddressApi }
+export default AddressApi

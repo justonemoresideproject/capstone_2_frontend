@@ -23,7 +23,10 @@ export const NavItems = [
                 location: "myProfile"
             }
         ]
-    },
+    }
+]
+
+export const AdminNavItems = [
     {
         title: "Admin",
         submenu: [
@@ -40,5 +43,16 @@ export const NavItems = [
                 location: 'addresses'
             }
         ]
+    }
+]
+
+export const AuthNavItems = [
+    {
+        title: "Login",
+        location: "login"
+    },
+    {
+        title: "Register",
+        location: "register"
     }
 ]

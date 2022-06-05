@@ -1,10 +1,24 @@
 import { React, useState } from 'react';
 import { login } from '../../actions/Auth'
 import { Navigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
 function Login() {
-    const INITIAL_STATE = {}
+    const dispatch = useDispatch()
+    const auth = useSelector(store => store.auth)
+
+    const INITIAL_STATE = {
+        username: '', password: ''
+    }
     const [formData, setFormData] = useState(INITIAL_STATE)
+
+    if(auth.token) {
+        return (
+            <h1>
+                You're already logged in!
+            </h1> 
+        )
+    }
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -16,24 +30,47 @@ function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        let res = login({formData})
-        if(res.token){
+        dispatch(login(formData))
+        if(auth.token){
             return <Navigate to='/' />
         }
-        console.log(res)
+        console.log(auth)
     }
 
     return (
         <>
             <h1>Login</h1>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor='username'>Username:</label>
-                <input type='text' name='username' onChange={handleChange} value={formData.username}/>
+            <form 
+                className='loginForm' 
+                onSubmit={handleSubmit}>
+                <label 
+                    htmlFor='username' 
+                    className='formLabel'>
+                        Username:
+                </label>
+                <input 
+                    type='text' 
+                    name='username' 
+                    onChange={handleChange} 
+                    value={formData.username}
+                />
 
-                <label htmlFor='password'>Password</label>
-                <input type='password' name='password' onChange={handleChange} value={formData.password} />
+                <label 
+                    htmlFor='password'>
+                        Password
+                </label>
+                <input 
+                    type='password' 
+                    name='password' 
+                    onChange={handleChange} 
+                    value={formData.password} 
+                />
 
-                <button onClick={handleSubmit}>Submit</button>
+                <button 
+                    className='formSubmitButton' 
+                    onClick={handleSubmit}>
+                        Submit
+                </button>
             </form>
         </>
     )

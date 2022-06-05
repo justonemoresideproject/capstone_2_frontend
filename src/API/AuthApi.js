@@ -1,4 +1,4 @@
-const CommonApi = require('./CommonApi')
+import CommonApi from './CommonApi'
 
 class AuthApi {
     static async authenticate(userInfo) {
@@ -14,4 +14,4 @@ class AuthApi {
     }
 }
 
-module.exports = AuthApi
+export default AuthApi

@@ -1,13 +1,13 @@
-import { SET_TOKEN } from './types'
+import { SET_TOKEN, SET_AUTH_INFO, RESET_TOKEN } from './types'
 
-import { authenticate, signUp } from '../API/AuthApi'
+import AuthApi from '../API/AuthApi'
 
 function login({username, password}) {
     return async function(dispatch) {
-        const res = authenticate({username, password})
+        const res = AuthApi.authenticate({username, password})
 
         if(res.token){
-            dispatch(setToken(res.token))
+            dispatch(setAuthInfo({ userId: res.userId, isAdmin: res.isAdmin, token: res.token }))
         }
         return res
     }
@@ -15,10 +15,11 @@ function login({username, password}) {
 
 function register({username, password, firstName, lastName, phone, email}) {
     return async function(dispatch) {
-        const res = signUp({username, password, firstName, lastName, phone, email})
+        const res = AuthApi.signUp({username, password, firstName, lastName, phone, email})
 
         if(res.token){
             dispatch(setToken(res.token))
+            dispatch(setAuthInfo({ userId: res.userId, isAdmin: res.isAdmin }))
         }
         return res
     }
@@ -28,4 +29,12 @@ function setToken(token) {
     return { type: SET_TOKEN, payload: token }
 }
 
-export { login, register, setToken }
+function resetToken() {
+    return { type: RESET_TOKEN }
+}
+
+function setAuthInfo(authInfo) {
+    return { type: SET_AUTH_INFO, payload: authInfo}
+}
+
+export { login, register, setToken, resetToken }

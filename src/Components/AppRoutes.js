@@ -2,7 +2,7 @@ import { React, useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import Home from './Home'
-import Products from './Products'
+import Products from './Product/Products'
 import Customers from './Admin/Customers'
 import Orders from './Admin/Orders'
 import Profile from './Profile'

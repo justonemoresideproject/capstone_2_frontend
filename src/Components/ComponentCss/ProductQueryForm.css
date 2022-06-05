@@ -1,0 +1,17 @@
+.productQueryForm {
+    border-style: solid;
+    border-color: black;
+
+    width: 100vw;
+
+    align-self: center;
+}
+
+.productQueryForm>td {
+    height: 100%;
+
+    padding: 0px;
+    margin: 0px;
+
+    border-right: solid black;
+}

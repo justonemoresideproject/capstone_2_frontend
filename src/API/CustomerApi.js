@@ -26,4 +26,4 @@ class CustomerApi {
     }
 }
 
-module.exports = { CustomerApi }
+export default CustomerApi

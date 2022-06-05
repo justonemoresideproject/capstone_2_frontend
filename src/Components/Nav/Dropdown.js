@@ -7,7 +7,6 @@ function Dropdown({submenu, dropDown}) {
         <ul 
             className={`dropDown${dropDown ? "-show" : ""}`}>
             {submenu.map((item, index) => {
-                console.log(item)
                 return (
                 <li className="navItem" key={index}>
                     <NavLink className="navLink"
