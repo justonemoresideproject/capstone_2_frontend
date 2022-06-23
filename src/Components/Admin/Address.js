@@ -7,8 +7,6 @@ function Address(info) {
     const customers = useSelector(state => state.customers)
     const infoKeys = Object.keys(info)
 
-    console.log(info)
-
     useEffect(function() {
         dispatch(getCustomersFromApi)
     }, [customers])

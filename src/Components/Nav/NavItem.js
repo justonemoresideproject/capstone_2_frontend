@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom"
 
 import Dropdown from "./Dropdown"
 
-function NavItem({item}) {
+function NavItem({item, length}) {
     const [dropDown, setDropDown] = useState(false)
     
     return (

@@ -1,0 +1,31 @@
+.customerInfoTable {
+    display: flex;
+    align-items: center;
+    justify-content:center;
+
+    color:rgb(255, 255, 255);
+
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.customerInfoTable>tbody {
+    background-color: rgba(62, 36, 7, 0.596);
+    border-radius: 8%;
+
+    font-size: 1.5rem;
+}
+
+.productInfoTable {
+    display: flex;
+    align-items: centers;
+    justify-content: center;
+
+    color:rgb(255, 255, 255);
+}
+
+.productInfoTable>tbody {
+    background-color: rgba(62, 36, 7, 0.596);
+    border-radius: 6%;
+
+    font-size: 1.5rem;
+}

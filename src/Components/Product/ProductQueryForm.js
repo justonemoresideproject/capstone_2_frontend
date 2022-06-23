@@ -3,11 +3,19 @@ import '../ComponentCss/ProductQueryForm.css'
 import React, {useState, useEffect} from 'react'
 import { useDispatch } from 'react-redux'
 
-import { sendQueryFromApi } from '../../actions/Product'
+import { setQueryProducts } from '../../actions/Product'
+import ProductApi from '../../API/ProductApi'
+import { findProducts } from '../Helpers/FindProducts'
 
-function ProductQueryForm() {
+function ProductQueryForm(products) {
     const dispatch = useDispatch();
-    const INITIAL_STATE = {};
+
+    const INITIAL_STATE = {
+        "name": '',
+        "price": Infinity,
+        "descOrder": true
+    };
+    const [isLoading, setIsLoading] = useState(false)
 
     const [formData, setFormData] = useState(INITIAL_STATE);
 
@@ -21,91 +29,80 @@ function ProductQueryForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(sendQueryFromApi(formData))
+        setIsLoading(true);
+        const matchingProducts = findProducts(products, formData.price, formData.name)
+        dispatch(matchingProducts)
     }
 
     return (
-        <table 
-            className="productQueryForm" 
-            onSubmit={() => handleSubmit()}>
-            <tr>
+        <table className='formWrapper'>
+            <tbody>
+            <tr className='radioRow'>
                 <td>
-                    <label className='radioLabel' htmlFor="lessThan">
-                        &#60;
-                    </label>
-                    <input 
-                        className='radioInput'
-                        type="radio" 
-                        id="lessThan" 
-                        name="lessThan" 
-                        onChange={handleChange} 
-                        value={formData.lessThan = true}
-                    />
                     <label 
-                        className='radioLabel'
-                        htmlFor="greaterThan"
-                    >
-                        &#62;
+                        className='label'
+                        htmlFor="targetPrice">
+                            Price
                     </label>
-                    <input 
-                        className='radioInput'
-                        type="radio" 
-                        id="lessThan" 
-                        name="lessThan" 
-                        onChange={handleChange} 
-                        value={formData.lessThan = false}
-                    />
-
-                    <br />
-
+                    <br/>
                     <label 
-                        className='radioLabel'
-                        htmlFor="descOrder"
-                    >
-                        &#8595;
+                        className='label' 
+                        htmlFor='ascOrDesc'>
+                            Price Order
                     </label>
-                    <input 
-                        className='radioInput'
-                        type='radio' 
-                        id="descOrder" 
-                        name="descOrder" 
-                        onChange={handleChange} 
-                        value={formData.descOrder = true} 
-                    />
-                    <label 
-                        className='radioLabel'
-                        htmlFor="ascOrder">
-                        &#8593;
-                    </label>
-                    <input 
-                        className='radioInput'
-                        type='radio' 
-                        id="ascOrder" 
-                        name="descOrder" 
-                        onChange={handleChange} 
-                        value={formData.descOrder = false} 
-                    />
                 </td>
                 <td>
-                    <label 
-                        className='textLabel'
-                        htmlFor="targetPrice">
-                            Price:
-                    </label>
-                    <input 
-                        className='textInput'
-                        type="text" 
-                        name="targetPrice" 
-                        id='targetPriceInput' 
-                        onChange={handleChange} 
-                        value={formData.target} 
-                    />
-                    <button 
-                        onClick={() => handleSubmit()}>
-                            Search
-                    </button>
+                    <select 
+                        className='selectInput' 
+                        id="price" 
+                        name="price" 
+                        onChange={handleChange}>
+                        <option value={Infinity}>
+                            All
+                        </option>
+                        <option value={5}>
+                            Under 5
+                        </option>
+                        <option value={10}>
+                            Under 10
+                        </option>
+                        <option value={20}>
+                            Under 20
+                        </option>
+                        <option value={50}>
+                            Under 50
+                        </option>
+                    </select>
+                    <br />
+                    <select 
+                        className='selectInput'
+                        id="order" 
+                        name="order">
+                        <option value={formData.descOrder = true}>
+                            Descending
+                        </option>
+                        <option value={formData.descOrder = false}>
+                            Ascending
+                        </option>
+                    </select>
+                </td>
+                <td className='queryTd'>
+                    <span className='queryWrapper'>
+                        <input 
+                            type='text' 
+                            className='textInput'
+                            name='name'
+                            onChange={handleChange}
+                            value={formData.name} />
+                        <button
+                            className='queryButton'
+                            onClick={() => handleSubmit()}>
+                            Search                    
+                        </button>
+                    </span>
                 </td>
             </tr>
+            </tbody>
         </table>
     )
 }

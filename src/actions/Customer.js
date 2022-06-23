@@ -1,4 +1,4 @@
-import { ADD_CUSTOMER, REMOVE_CUSTOMER } from './types'
+import { ADD_CUSTOMER, ADD_RECENT_ORDER, SET_CUSTOMER, SET_CUSTOMERS, REMOVE_CUSTOMER } from './types'
 
 const { create, remove, get, all } = require('../API/CustomerApi')
 
@@ -36,12 +36,24 @@ function removeCustomerFromApi(id) {
     }
 }
 
+function addRecentOrder(order) {
+    return {type: ADD_RECENT_ORDER, payload: order}
+}
+
 function addCustomer(customer) {
     return {type: ADD_CUSTOMER, payload: customer}
+}
+
+function setCustomer(customer) {
+    return {type: SET_CUSTOMER, payload: customer}
+}
+
+function setCustomers(customers) {
+    return {type: SET_CUSTOMERS, payload: customers}
 }
 
 function removeCustomer(id) {
     return {type: REMOVE_CUSTOMER, payload: id}
 }
 
-export { getCustomerFromApi, getCustomersFromApi, addCustomerToApi, removeCustomerFromApi }
+export { getCustomerFromApi, addRecentOrder, getCustomersFromApi, addCustomerToApi, setCustomer, removeCustomerFromApi }

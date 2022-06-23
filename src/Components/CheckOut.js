@@ -1,48 +1,98 @@
-import React from 'react'
+import './ComponentCss/Checkout.css'
+
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from "react-router-dom"
+
+import Product from './Product/Product'
+import { setTotal } from '../actions/Cart'
+
+const { TOKEN, BASE_URL } = require('../API/apiConfig.js')
 
 function CheckOut() {
     const dispatch = useDispatch();
-    const store = useSelector(store => store)
-    const products = store.products
-    const cartItems = store.cartItems
-    const cartKeys = Object.keys(store.cartItems)
+    const navigate = useNavigate();
+    const store = useSelector(store => store);
+    const products = store.products;
+    const cartItems = store.cart;
+    const cartKeys = [];
 
-    let total = 0;
+    console.log(products);
+
+    const proceedToPayment = (total) => {
+        dispatch(setTotal(total))
+        navigate('/customerInfo')
+    }
+
+    if(cartItems != null && cartItems != undefined) {
+        Object.keys(cartItems).forEach(key => {
+            cartKeys.push(key)
+        })
+    };
+
+    console.log(cartKeys);
+
+    const total = [];
 
     return (
         <>
-            <h1>Checkout</h1>
-            <table>
+        <h1>Checkout</h1>
+        {cartKeys.length > 0 ?
+            <table 
+                style={{
+                    "width": "100vw",
+                    "height": "100%"
+                }}
+                className='checkoutTable'>
                 <thead>
-                    <th>Item</th>
-                    <th>Quantity</th>
-                    <th>Price Per</th>
+                        <td>
+                            <th>Item</th>
+                        </td>
+                        <td>
+                            <th>Quantity</th>
+                        </td>
+                        <td>
+                            <th>Price Per</th>
+                        </td>
+                        <td>
+                            <th>Total</th>
+                        </td>
                 </thead>
                 <tbody>
-                    {cartKeys.map(key => {
-                        total += products[key].price * cartItems[key]
+                    {cartKeys.map((key, index) => {
+                        total.push(products[key].price * cartItems[key])
                         return (
-                            <tr>
-                                <td>
-                                    {products[key].name}
-                                </td>
+                            <tr className='checkoutRow' key={`checkoutRow-${index}`}>
+                                <Product product={products[key]}  />
                                 <td>
                                     {cartItems[key]}
                                 </td>
                                 <td>
                                     {products[key].price}
                                 </td>
+                                <td>{products[key].price * cartItems[key]}</td>
                             </tr>
                         )
                     })}
+                </tbody>
+                <tfoot>
                     <tr>
                         <td>
-                            Total: {total}
+                            Grand Total: {total.reduce((prev, curr) => {
+                                return ( prev + curr)
+                            })}
+                        </td>
+                        <td>
+                            <button 
+                                className='button' 
+                                onClick={() => proceedToPayment(total)}>
+                                    Purchase
+                            </button>
                         </td>
                     </tr>
-                </tbody>
-            </table>
+
+                </tfoot>
+            </table> : <h1>No Items in your cart :(</h1> }
         </>
     )
 }

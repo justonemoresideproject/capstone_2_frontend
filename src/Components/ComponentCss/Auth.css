@@ -1,0 +1,21 @@
+.label {
+    font-size: 2rem;
+}
+
+.error {
+    color: rgb(197, 1, 1);
+    font-size: 2rem;
+    font-weight: bolder;
+
+    position: absolute;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+tr {
+    margin-top: auto;
+    margin-bottom: auto;
+}

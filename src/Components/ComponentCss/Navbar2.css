@@ -5,7 +5,7 @@
     list-style-type: none;
     display: inline-flex;
 
-    background-color: black;
+    /* background-color: black; */
 
     width: 100vw;
     top: 0;
@@ -15,7 +15,7 @@
     padding-top: 0;
     padding-bottom: 0;
 
-    overflow: hidden;
+    overflow: visible;
 }
 
 .navLink {
@@ -26,7 +26,13 @@
     color: rgb(159, 158, 158);
 }
 
+.navButton {
+    background-color: rgb(133, 79, 21);
+    color: white;
+}
+
 .navButton:hover{
+    background-color: rgb(156, 107, 54);
     color: rgb(159, 158, 158);
 }
 
@@ -41,25 +47,14 @@
 
     color:rgb(133, 79, 21);
 
-    /* margin-bottom: 0px;
-    margin-top: 0px;
-    padding-right: 15px;
-    padding-left: 15px;
-
-    padding-top: 15px;
-    padding-bottom: 15px; */
-
     height: inherit;
-
-    width: 20vw;
-    
-    /* width: 50px;
-    height: 100%; */
 }
 
-/* .navMenu .navItem:hover {
-    color: white;
-} */
+.navItem {
+    position: relative;
+    overflow: visible;
+}
+
 
 .navButton {
     width: 100%;
@@ -68,10 +63,14 @@
     padding: 0px;
     margin: 0px;
 
+    display: center;
+
     background: transparent;
     color:rgb(133, 79, 21);
 
     font-size: 25px;
+
+    position: relative;
 
     box-shadow: none;
     border: none;
@@ -86,7 +85,9 @@
     display: block;
     list-style-type: none;
 
-    position: absolute;
+    position:fixed;
+
+    z-index: 5;
 
     padding: 0px;
     margin: 0px;
@@ -94,19 +95,25 @@
     width:inherit;
     overflow: hidden;
 
+    border: solid white;
     background-color: white;
 }
 
-.dropDown-show > .navItem {
-    position: relative;
-
-    width: 100%;
+.dropDown-show>.navItem {
+    display:flexbox;
+    z-index: 0;
+    list-style-position: inside;
 }
 
-.dropDown-show > .navItem > .navLink {
+.dropDown-show >.navItem >.navLink {
+    text-align: start;
     width: inherit;
-    margin: 0px;
-    padding: 0px;
+    margin-left: 0px;
+    display:list-item;
+    z-index: 9;
+    position: relative;
+
+    text-decoration: none;
 }
 
 /* .dropDown-show > .navItem:hover {

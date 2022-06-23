@@ -1,0 +1,51 @@
+.checkoutTable {
+    width: 100vw;
+    height: 100%;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+
+    color:rgb(0, 0, 0);
+    font-weight: bold;
+
+    overflow: hidden;
+}
+
+.checkoutTable>thead {
+    display:flex-box;
+    position: relative;
+    margin: 0px;
+    padding: 0px;
+
+    height: 20px;
+}
+
+.checkoutTable>thead>td {
+    position: relative;
+}
+
+.checkoutTable>thead>td>th {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+}
+
+.checkoutRow {
+    background-color: rgba(133, 79, 21, 0.729);
+
+    display:table-row;
+    /* width: 100vw; */
+    height: 30vh;
+
+}
+
+.checkoutRow>td {
+    min-width: 15vw;
+}
+
+.button {
+    width: 8vw;
+    height: 4.5vh;
+}

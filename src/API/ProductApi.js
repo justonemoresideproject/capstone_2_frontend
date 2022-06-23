@@ -2,36 +2,33 @@ import CommonApi from './CommonApi'
 
 class ProductApi {
     static async add(productInfo) {
-      const res = await CommonApi.request('products/create', productInfo, 'post')
+      const res = CommonApi.request('products/create', productInfo, 'post')
 
       return res
     }
 
     static async query(searchFilters) {
-      const res = await CommonApi.request(`products/query`, searchFilters, 'post')
+      const res = CommonApi.request(`products/query`, searchFilters, 'post')
 
       return res
     }
 
     static async get(id) {
-      const res = await CommonApi.request(`products/${id}`)
+      const res = CommonApi.request(`products/${id}`)
 
-      return res.product
+      return res
     }
 
     static async all() {
-      const res = await CommonApi.request(`products/`)
+      const res = CommonApi.request(`products/`)
 
-      console.log('Product Api all function')
-      console.log(res)
-
-      return res.products
+      return res
     }
 
     static async remove(id) {
-      const res = await CommonApi.request(`products/${id}`, {}, 'delete')
+      const res = CommonApi.request(`products/${id}`, {}, 'delete')
     
-      return res.product
+      return res
     }
 }
 

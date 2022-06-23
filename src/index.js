@@ -8,16 +8,43 @@ import { PersistGate } from "redux-persist/integration/react";
 import { Provider } from "react-redux";
 import { store, persistedStore } from "./store"
 
+import {Elements} from '@stripe/react-stripe-js'
+import {loadStripe} from '@stripe/stripe-js'
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+const getPromise = async () => {
+  const {publishableKey} = await fetch('/config').then(r => r.json())
+  console.log(publishableKey)
+  return loadStripe(publishableKey)
+}
+
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistedStore}>
-        <App />
-      </PersistGate>
+      <Elements stripe={getPromise()}>
+        <PersistGate loading={null} persistor={persistedStore}>
+          <App />
+        </PersistGate>
+      </Elements>
     </Provider>,
-  </React.StrictMode>
-);
+  </React.StrictMode>)
+// (async () => {
+//   const {publishableKey} = await fetch('/config').then(r => r.json())
+//   const stripePromise = loadStripe(publishableKey)
+
+//   root.render(
+//     <React.StrictMode>
+//       <Provider store={store}>
+//         {/* <Elements stripe={stripePromise}> */}
+//           <PersistGate loading={null} persistor={persistedStore}>
+//             <App />
+//           </PersistGate>
+//         {/* </Elements> */}
+//       </Provider>,
+//     </React.StrictMode>
+//   );
+// })()
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

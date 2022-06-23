@@ -9,6 +9,18 @@ function products(state = INITIAL_STATE, action) {
                         ...action.product
                     }
                 }
+
+        case 'SET_PRODUCTS':
+            return { 
+                    ...action.payload
+                }
+
+        case 'SET_QUERY_PRODUCTS':
+            console.log(action.payload)
+            return {
+                ...state,
+                "queryProducts": [action.payload]
+            }
         
         case 'REMOVE_PRODUCT':
             const newState = { ...state }

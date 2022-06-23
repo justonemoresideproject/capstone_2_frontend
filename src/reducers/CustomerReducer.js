@@ -4,10 +4,15 @@ function customers(state = INITIAL_STATE, action) {
     switch(action.type){
         case "ADD_CUSTOMER":
             return { ...state,
-                customers : {
-                    ...state.customers,
-                    [action.payload.id]: { ...action.payload}
-                }
+                [action.payload.id]: { ...action.payload }
+            }
+
+        case "SET_CUSTOMER":
+            return { ...action.payload }
+
+        case 'ADD_RECENT_ORDER':
+            return { ...state, 
+                "recentOrder" : { ...action.payload }
             }
 
         case "REMOVE_CUSTOMER":

@@ -1,0 +1,41 @@
+.productInfoContainer {
+    width: 95%;
+    height: 95%;
+    position: absolute;
+    background-color: rgba(163, 117, 68, 0.563);
+    display: block;
+    margin: auto;
+
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+}
+
+.productInfoContainer>button {
+    position:absolute;
+
+    width: 30%;
+    height: 30%;
+
+    right: 10px;
+    bottom: 10px;
+}
+
+.productName {
+    padding: 0px;
+    margin: 0px;
+}
+
+.productInfo {
+    position: relative;
+}
+
+.productPrice {
+    color: green;
+}
+
+.addToCartForm {
+    padding-top: 8px;
+}
+

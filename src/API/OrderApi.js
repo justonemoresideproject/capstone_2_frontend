@@ -2,27 +2,29 @@ import CommonApi from './CommonApi'
 
 class OrderApi {
     static async create(OrderInfo) {
-        const res = await CommonApi.request('orders/', OrderInfo, 'post')
+        const res = CommonApi.request('orders/', OrderInfo, 'post')
 
-        return res.order
+        console.log(res)
+
+        return res
     }
 
     static async get(id) {
-        const res = await CommonApi.request(`orders/${id}`)
+        const res = CommonApi.request(`orders/${id}`)
 
-        return res.order
+        return res
     }
 
     static async all() {
-        const res = await CommonApi.request('orders/')
+        const res = CommonApi.request('orders/')
 
-        return res.orders
+        return res
     }
 
     static async remove(id) {
-        const res = await CommonApi.request(`orders/${id}`, {}, 'delete')
+        const res = CommonApi.request(`orders/${id}`, {}, 'delete')
 
-        return res.order
+        return res
     }
 }
 

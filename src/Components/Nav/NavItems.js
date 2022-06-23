@@ -8,21 +8,8 @@ export const NavItems = [
         location: "products"
     },
     {
-        title: "My Stuff",
-        submenu: [
-            {
-                title: "My Orders",
-                location: "myOrders"
-            },
-            {
-                title: "My Addresses",
-                location: "myCustomers"
-            },
-            {
-                title: "My Profile",
-                location: "myProfile"
-            }
-        ]
+        title: "Checkout",
+        location: "checkout"
     }
 ]
 
@@ -41,6 +28,26 @@ export const AdminNavItems = [
             {
                 title: "Addresses",
                 location: 'addresses'
+            }
+        ]
+    }
+]
+
+export const UserNavItems = [
+    {
+        title: "My Stuff",
+        submenu: [
+            {
+                title: "My Orders",
+                location: "myOrders"
+            },
+            {
+                title: "My Addresses",
+                location: "myAddresses"
+            },
+            {
+                title: "My Profile",
+                location: "myProfile"
             }
         ]
     }

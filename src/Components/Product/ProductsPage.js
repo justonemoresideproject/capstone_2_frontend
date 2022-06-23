@@ -1,5 +1,3 @@
-import Product from './Product'
-
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 
@@ -12,35 +10,32 @@ import ProductList from './ProductList'
  * Authorization: None
  */
 
-function Products() {
+function ProductsPage() {
     const dispatch = useDispatch()
     const products = useSelector(store => store.products)
+    const queryProducts = useSelector(store => store.products.queryProducts)
     const productKeys = Object.keys(products)
-    let currKeyIdx = 0
     const store = useSelector(store => store)
 
     console.log(store)
 
     useEffect(function() {
-        // if(products == undefined) {
-        //     dispatch(getProductsFromApi())
-        // }
         dispatch(getProductsFromApi())
-    }, [dispatch])
-
-    
+    }, [dispatch, queryProducts])
 
     return (
         <>
             {productKeys.length < 1 ? <h1> ...No products here :(</h1> : 
                 <>
-                    <h1>Products</h1>
-                    <ProductQueryForm />
-                    <ProductList />
+                    <ProductQueryForm products={products} />
+                    {queryProducts == undefined ? 
+                        <ProductList products={products} rows={3}/> :
+                        <ProductList products={queryProducts} rows={3} />
+                    }
                 </>
             }
         </>
     )
 }
 
-export default Products
+export default ProductsPage

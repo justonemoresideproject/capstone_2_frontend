@@ -2,23 +2,25 @@ import CommonApi from './CommonApi'
 
 class AddressApi {
     static async create(AddressInfo) {
-        const res = await CommonApi.request('addresses/', AddressInfo, 'post')
+        const res = CommonApi.request('addresses/', AddressInfo, 'post')
 
         return res
     }
 
     static async get(id) {
-        const res = await CommonApi.request(`addresses/${id}`)
+        const res = CommonApi.request(`addresses/${id}`)
+
+        return res
     }
 
     static async all() {
-        const res = await CommonApi.request(`addresses/`)
+        const res = CommonApi.request(`addresses/`)
 
         return res
     }
 
     static async remove(id) {
-        const res = await CommonApi.request(`addresses/${id}`, {}, 'delete')
+        const res = CommonApi.request(`addresses/${id}`, {}, 'delete')
 
         return res
     }
