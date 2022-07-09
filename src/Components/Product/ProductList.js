@@ -20,7 +20,6 @@ function ProductList(products, columns=3, height=90, width=100) {
                     return (
                         <tr className='productTableTr' key={`${index}`}>
                             {columnKeys.map((id, indexTwo) => {
-                                console.log(columnKeys.length)
                                 return(
                                     <Product 
                                         product={row[0][id]} 

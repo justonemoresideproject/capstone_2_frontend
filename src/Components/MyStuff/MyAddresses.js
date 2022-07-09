@@ -5,6 +5,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import ItemList from '../ItemList'
 import { getUserAddressesFromApi } from '../../actions/User'
 
+/**
+ * 
+ * @returns List of user's addresses
+ */
 
 function MyAddresses() {
     const dispatch = useDispatch();

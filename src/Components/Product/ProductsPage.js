@@ -17,8 +17,6 @@ function ProductsPage() {
     const productKeys = Object.keys(products)
     const store = useSelector(store => store)
 
-    console.log(store)
-
     useEffect(function() {
         dispatch(getProductsFromApi())
     }, [dispatch, queryProducts])

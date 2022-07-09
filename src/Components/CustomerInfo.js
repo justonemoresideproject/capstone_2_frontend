@@ -7,12 +7,14 @@ import { useNavigate } from 'react-router-dom'
 
 import { setCustomer } from '../actions/Customer'
 
+import { BASE_URL } from '../API/apiConfig'
+
 
 function CustomerInfo() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const store = useSelector(store => store)
+    const store = useSelector(store => store);
     const cart = store.cart;
 
     const INITIAL_STATE = {
@@ -37,8 +39,29 @@ function CustomerInfo() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(setCustomer(formData))
-        navigate('/paymentForm')
+
+        const createPayment = async () => {
+            const {error: backendError, clientSecret} = await fetch(`${BASE_URL}/payment/create-payment-intent`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    amount: cart.total,
+                    paymentMethodType: 'card',
+                    currency: 'usd'
+                })
+            }).then(r => r.json());
+    
+            if(backendError) {
+                setError(`${backendError}`)
+                return;
+            }
+            navigate(`/paymentForm/${clientSecret}`)
+        }
+
+        dispatch(setCustomer(formData));
+        createPayment();
     }
 
     return (
@@ -137,38 +160,37 @@ function CustomerInfo() {
                                         Address Type
                                 </label>
                             </div>
-                            <div>
-                                <label className='label'>Home</label>
-                                <input
-                                    type='radio'
-                                    className='radioInput'
-                                    name="addressType"
-                                    onChange={handleChange}
-                                    value={"home"} />
-                            </div>
-                            <div>
-                                <label 
-                                    className='label'>
-                                        Business
-                                </label>
-                                <input
-                                    type='radio'
-                                    className='radioInput'
-                                    name="addressType"
-                                    onChange={handleChange}
-                                    value={"business"} />
-                            </div>
-                            <div>
-                                <label 
-                                    className='label'>
+                            {/* <div>
+                                <select>
+                                    <option value="home">
+                                        Home
+                                    </option>
+                                    <option value="apartment">
                                         Apartment
-                                </label>
-                                <input
-                                    type='radio'
-                                    className='radioInput'
+                                    </option>
+                                    <option value="Business">
+                                        Business
+                                    </option>
+                                </select>
+                            </div> */}
+                        </td>
+                        <td>
+                            <div>
+                                <select 
+                                    className="selectInput"
+                                    id="addressType"
                                     name="addressType"
-                                    onChange={handleChange}
-                                    value={"apartment"} />
+                                    onChange={handleChange}>
+                                    <option value="home">
+                                        Home
+                                    </option>
+                                    <option value="apartment">
+                                        Apartment
+                                    </option>
+                                    <option value="Business">
+                                        Business
+                                    </option>
+                                </select>
                             </div>
                         </td>
                     </tr>
@@ -181,13 +203,9 @@ function CustomerInfo() {
                             </button>
                         </div>
                     </tr>
-                    <tr>
-                        <td>
-                            <div>{error}</div>
-                        </td>
-                    </tr>
                 </tbody>
             </table>
+            <div>{error}</div>
         </form>
     )
 }

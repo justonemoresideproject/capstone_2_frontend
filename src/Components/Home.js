@@ -1,14 +1,14 @@
+import './ComponentCss/Home.css';
+import "react-responsive-carousel/lib/styles/carousel.css";
+// import "react-responsive-carousel/lib/styles/carousel.min.css";
+
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-// import { Carousel } from 'react-responsive-carousel';
+import { useSelector, useDispatch } from 'react-redux'
 
-import ProductList from './Product/ProductList';
-import { randomProducts } from './Helpers/AlgFunctions';
-import MovingProduct from './Product/MovingProduct';
-import { getProductsFromApi } from '../actions/Product';
-
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-var Carousel = require('react-responsive-carousel').Carousel;
+import ProductList from './Product/ProductList'
+import { randomProducts } from './Helpers/AlgFunctions'
+import { getProductsFromApi } from '../actions/Product'
+var Carousel = require('react-responsive-carousel').Carousel
 
 function Home() {
     const dispatch = useDispatch()
@@ -25,40 +25,42 @@ function Home() {
         )
     }
 
-    console.log(firstRandomProducts)
-
     return (
         <>
-            <Carousel 
-                showArrows={true} 
-                // onChange={onChange} 
-                // onClickItem={onClickItem} 
-                // onClickThumb={onClickThumb}
+            <h1>Aglets Store</h1>
+            <div className='carouselWrapper'>
+            <Carousel
+                showArrows={true}
                 >
-                {Object.keys(randomProducts).map((key, index) => {
-                    console.log(randomProducts[key])
-                    return (
-                        <div>
-                            <img src={randomProducts[key].imageSrc} />
-                            <p className='legend'>Legend {index + 1}</p>
-                        </div>
-                    )
-                })}
-                    {/* <div>
-                        <img src={firstRandomProducts[1].imageSrc} />
-                        <p className="legend">Legend 1</p>
+                    <div>
+                        <img 
+                            className='carouselImg'
+                            src={firstRandomProducts[1].imageSrc} 
+                        />
+                        <p className='legend'>
+                            {firstRandomProducts[1].name}
+                        </p>
                     </div>
                     <div>
-                        <img src={firstRandomProducts[2].imageSrc} />
-                        <p className="legend">Legend 2</p>
+                        <img 
+                            className='carouselImg'
+                            src={firstRandomProducts[2].imageSrc} 
+                        />
+                        <p className='legend'>
+                            {firstRandomProducts[2].name}
+                        </p>
                     </div>
                     <div>
-                        <img src={firstRandomProducts[3].imageSrc} />
-                        <p className="legend">Legend 3</p>
-                    </div> */}
+                        <img 
+                            className='carouselImg'
+                            src={firstRandomProducts[3].imageSrc} 
+                        />
+                        <p className='legend'>
+                            {firstRandomProducts[3].name}
+                        </p>
+                    </div>
             </Carousel>
-            
-            <ProductList products={randomProducts} rows={2} />
+            </div>
         </>
     )
 }

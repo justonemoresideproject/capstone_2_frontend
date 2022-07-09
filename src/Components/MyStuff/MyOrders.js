@@ -4,6 +4,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import ItemList from '../ItemList'
 import { getUserOrdersFromApi } from '../../actions/User'
 
+/**
+ * 
+ * @returns List of user's orders
+ */
+
+
 function MyOrders() {
     const dispatch = useDispatch()
     const userId = useSelector(store => store.auth.userId)

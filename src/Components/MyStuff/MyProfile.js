@@ -3,6 +3,11 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { getUserProfileFromApi, changeProfileFromApi } from '../../actions/User'
 
+/**
+ * 
+ * @returns User Profile
+ */
+
 function MyProfile() {
     const dispatch = useDispatch()
     const userId = useSelector(store => store.auth.userId) 

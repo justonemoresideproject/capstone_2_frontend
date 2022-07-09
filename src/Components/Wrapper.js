@@ -3,6 +3,11 @@ import './ComponentCss/Home.css'
 import { Outlet, useNavigate } from 'react-router';
 import NavigationBar from './Nav/Navbar'
 
+/**
+ * 
+ * @returns wrapper component for routes
+ */
+
 function Wrapper() {
     const navigate = useNavigate();
 

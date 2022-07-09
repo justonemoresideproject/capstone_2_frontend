@@ -1,24 +1,35 @@
 #card-element {
-    z-index: 9;
-
-    width: 100%;
-    height: 5vh;
-
-    margin: auto;
-
-    display: flex;
-
+    border-radius: 4px 4px 0 0;
     position: relative;
-}
+    padding: 12px;
+    border: 1px solid rgba(50, 50, 93, 0.1);
+    height: 44px;
+    width: 100%;
+    margin: auto;
+    background: white;
+  }
 
 #payment-form {
-    z-index: 3;
-
     display:flexbox;
+    align-content: center;
 
     width: 60%;
 
     margin: auto;
+    padding: auto;
+}
 
-    background-color: white;
+.payButton {
+    position: relative;
+    border-radius: 4px 4px 0 0;
+    border: 1px solid rgba(50, 50, 93, 0.1);
+    padding: 12px;
+    margin: auto;
+    height: 44px;
+    width: 100%;
+    background-color: rgb(133, 79, 21);
+}
+
+.payButton:hover {
+    background-color: rgb(160, 100, 36);
 }

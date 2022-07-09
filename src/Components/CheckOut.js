@@ -45,6 +45,7 @@ function CheckOut() {
                 }}
                 className='checkoutTable'>
                 <thead>
+                    <tr>
                         <td>
                             <th>Item</th>
                         </td>
@@ -57,9 +58,11 @@ function CheckOut() {
                         <td>
                             <th>Total</th>
                         </td>
+                    </tr>
                 </thead>
                 <tbody>
                     {cartKeys.map((key, index) => {
+                        console.log(products[key])
                         total.push(products[key].price * cartItems[key])
                         return (
                             <tr className='checkoutRow' key={`checkoutRow-${index}`}>

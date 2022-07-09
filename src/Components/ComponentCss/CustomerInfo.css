@@ -4,27 +4,23 @@
     margin-left: auto;
     margin-right: auto;
 
-    width: 30vw;
+    padding: 0px;
+
+    width: 100%;
 
     font-size: 2rem;
 
     position: absolute;
+}
 
-    left: 35vw;
-
+.formTBody {
     background-color: rgba(133, 79, 21, 0.36);
     border: none;
 }
 
-#addressTypeRow {
-    position: relative;
-}
-
-#addressTypeRow>td {
-    width: 100%;
-    position: relative;
-
-    display: flexbox;
+#addressType {
+    width: 70%;
+    font-size: 1.7rem;
 }
 
 .textInput {
@@ -32,7 +28,7 @@
     height: 1.8rem;
 }
 
-.formSubmitButton {
+/* .formSubmitButton {
     width: inherit;
     height: 5vh;
     font-size: 2rem;
@@ -40,9 +36,7 @@
     position: relative;
 
     align-self: center;
-
-    /* margin-left: 10rem; */
-}
+} */
 
 .submitButtonWrapper {
     width: inherit;
