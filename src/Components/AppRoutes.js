@@ -41,7 +41,7 @@ function AppRoutes() {
                     element={<CustomerInfo />}
                 />
                 <Route
-                    path='paymentForm/:clientSecret'
+                    path='paymentForm'
                     element={<PaymentForm />}
                 />
                 <Route

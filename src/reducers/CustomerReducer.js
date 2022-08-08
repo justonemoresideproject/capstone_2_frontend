@@ -11,8 +11,13 @@ function customers(state = INITIAL_STATE, action) {
             return { ...action.payload }
 
         case 'ADD_RECENT_ORDER':
-            return { ...state, 
+            return { 
                 "recentOrder" : { ...action.payload }
+            }
+
+        case 'SET_SECRET':
+            return { ...state,
+                secret: action.payload 
             }
 
         case "REMOVE_CUSTOMER":

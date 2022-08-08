@@ -39,35 +39,41 @@ function CustomerInfo() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        let total = 0;
+        Object.keys(cart).forEach(key => {
+            total += +store.products[key].price
+        })
+        console.log(total)
 
-        const createPayment = async () => {
-            const {error: backendError, clientSecret} = await fetch(`${BASE_URL}/payment/create-payment-intent`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    amount: cart.total,
-                    paymentMethodType: 'card',
-                    currency: 'usd'
-                })
-            }).then(r => r.json());
+        // const createPayment = async () => {
+        //     const {error: backendError, clientSecret} = await fetch(`${BASE_URL}/payment/create-payment-intent`, {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json',
+        //         },
+        //         body: JSON.stringify({
+        //             amount: total,
+        //             paymentMethodType: 'card',
+        //             currency: 'usd'
+        //         })
+        //     }).then(r => r.json());
     
-            if(backendError) {
-                setError(`${backendError}`)
-                return;
-            }
-            navigate(`/paymentForm/${clientSecret}`)
-        }
+        //     if(backendError) {
+        //         console.log(backendError)
+        //         setError(`${backendError.message}`)
+        //         return;
+        //     }
+        //     navigate(`/paymentForm/${clientSecret}`)
+        // }
 
         dispatch(setCustomer(formData));
-        createPayment();
+        navigate('/paymentForm')
     }
 
     return (
         <form className='customerInfoForm' onSubmit={handleSubmit}>
             <table>
-                <tbody>
+                <tbody className='formTBody'>
                     <tr className='customerInfoRow'>
                         <td>
                             <label 

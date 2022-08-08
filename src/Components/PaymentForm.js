@@ -14,18 +14,21 @@ const { TOKEN, BASE_URL } = require('../API/apiConfig.js')
 // import StatusMessages, {useMessage} from './StatusMessages'
 
 function PaymentForm() {
-    const { clientSecret } = useParams();
+    // const { clientSecret } = useParams();
     const elements = useElements();
     const stripe = useStripe();
     const store = useSelector(store => store)
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
+    console.log(store.customers)
+
     const [error, setError] = useState('')
 
     const cartKeys = Object.keys(store.cart)
+    console.log(cartKeys)
     let total = 0
-    cartKeys.forEach(key => total += store.cart[key].price)
+    cartKeys.forEach(key => total += +store.products[key].price)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -34,22 +37,23 @@ function PaymentForm() {
             return;
         }
 
-        //Create payment intent on the server
-        // const {error: backendError, clientSecret} = await fetch('/create-payment-intent', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify({
-        //         amount: total,
-        //         paymentMethodType: 'card',
-        //         currency: 'usd'
-        //     })
-        // }).then(r => r.json());
+        // Create payment intent on the server
+        const {error: backendError, clientSecret} = await fetch(`${BASE_URL}/payment/create-payment-intent`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                amount: total * 100,
+                paymentMethodType: 'card',
+                currency: 'usd'
+            })
+        }).then(r => r.json());
 
-        // if(backendError) {
-        //     return;
-        // }
+        if(backendError) {
+            console.log(backendError)
+            return;
+        }
 
         //Confirm the payment on the client
         const {error: stripeError, paymentIntent} = await stripe.confirmCardPayment(
@@ -80,12 +84,11 @@ function PaymentForm() {
         }).then(function(res) {
             const recentOrder = {
                 "products": store.cart, 
-                "customerInfo": store.customer, 
+                "customerInfo": store.customers, 
                 "order": res
             }
             dispatch(addRecentOrder(recentOrder))
             dispatch(resetCart())
-            console.log('dispatching...')
         }).then(function() {
             navigate(`/successPage`)
         }).catch(function(res) {

@@ -51,3 +51,7 @@ export const randomProducts = (products, numProducts) => {
 
     return returnObj;
 }
+
+export const removeDecimal = (number) => {
+    return number * 100
+}

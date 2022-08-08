@@ -12,9 +12,9 @@ function SuccessPage() {
     const dispatch = useDispatch()
     const [customerKeys, setCustomerKeys] = useState([])
     const recentOrder = useSelector(state => state.customers.recentOrder)
+    console.log(recentOrder)
     const products = useSelector(state => state.products)
-    const myProducts = recentOrder.products 
-    const customerInfo = recentOrder.customerInfo
+    const myProducts = recentOrder.products
     
     return(
         <> 
@@ -23,14 +23,14 @@ function SuccessPage() {
         <h2>Customer Info</h2>
         <table className='customerInfoTable'>
             <tbody>
-                {Object.keys(customerInfo).map((key, index) => {
+                {Object.keys(recentOrder.customerInfo).map((key, index) => {
                     return(
                     <tr key={index}>
                         <td key={`${index}-1`}>
                             {returnText(key)}:
                         </td>
                         <td key={`${index}-2`}>
-                            {customerInfo[key]}
+                            {recentOrder.customerInfo[key]}
                         </td>
                     </tr>
                     )

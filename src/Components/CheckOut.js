@@ -19,8 +19,7 @@ function CheckOut() {
 
     console.log(products);
 
-    const proceedToPayment = (total) => {
-        dispatch(setTotal(total))
+    const proceedToPayment = () => {
         navigate('/customerInfo')
     }
 
@@ -30,9 +29,7 @@ function CheckOut() {
         })
     };
 
-    console.log(cartKeys);
-
-    const total = [];
+    let total = 0;
 
     return (
         <>
@@ -63,7 +60,7 @@ function CheckOut() {
                 <tbody>
                     {cartKeys.map((key, index) => {
                         console.log(products[key])
-                        total.push(products[key].price * cartItems[key])
+                        total += (products[key].price * cartItems[key])
                         return (
                             <tr className='checkoutRow' key={`checkoutRow-${index}`}>
                                 <Product product={products[key]}  />
@@ -81,9 +78,7 @@ function CheckOut() {
                 <tfoot>
                     <tr>
                         <td>
-                            Grand Total: {total.reduce((prev, curr) => {
-                                return ( prev + curr)
-                            })}
+                            Grand Total: {total}
                         </td>
                         <td>
                             <button 
