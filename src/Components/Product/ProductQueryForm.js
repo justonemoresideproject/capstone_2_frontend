@@ -37,6 +37,66 @@ function ProductQueryForm(products) {
     return (
         <table className='formWrapper'>
             <tbody>
+            <tr>
+                <td className='queryTd'>
+                    <select 
+                        className='selectInput' 
+                        id="price" 
+                        name="price" 
+                        onChange={handleChange}>
+                        <option value={Infinity}>
+                            All
+                        </option>
+                        <option value={5}>
+                            Under 5
+                        </option>
+                        <option value={10}>
+                            Under 10
+                        </option>
+                        <option value={20}>
+                            Under 20
+                        </option>
+                        <option value={50}>
+                            Under 50
+                        </option>
+                    </select>
+                </td>
+                <td className='queryTd'>
+                    <select 
+                    className='selectInput'
+                    id="order" 
+                    name="order">
+                        <option value={formData.descOrder = true}>
+                            Descending
+                        </option>
+                        <option value={formData.descOrder = false}>
+                            Ascending
+                        </option>
+                    </select>
+                </td>
+                <td colSpan={2} className='queryTd'>
+                    <input 
+                        type='text' 
+                        className='textInput'
+                        name='name'
+                        onChange={handleChange}
+                        value={formData.name} />
+                </td>
+                <td className='queryTd'>
+                    <button
+                        className='queryButton'
+                        onClick={() => handleSubmit()}>
+                        Search                    
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    )
+
+    return (
+        <table className='formWrapper'>
+            <tbody>
             <tr className='radioRow'>
                 <td>
                     <label 

@@ -22,7 +22,7 @@ function CustomerInfo() {
         lastName: '',
         email: '',
         address: '',
-        addressType: '',
+        addressType: 'home',
         phone: ''
     };
 
@@ -44,27 +44,6 @@ function CustomerInfo() {
             total += +store.products[key].price
         })
         console.log(total)
-
-        // const createPayment = async () => {
-        //     const {error: backendError, clientSecret} = await fetch(`${BASE_URL}/payment/create-payment-intent`, {
-        //         method: 'POST',
-        //         headers: {
-        //             'Content-Type': 'application/json',
-        //         },
-        //         body: JSON.stringify({
-        //             amount: total,
-        //             paymentMethodType: 'card',
-        //             currency: 'usd'
-        //         })
-        //     }).then(r => r.json());
-    
-        //     if(backendError) {
-        //         console.log(backendError)
-        //         setError(`${backendError.message}`)
-        //         return;
-        //     }
-        //     navigate(`/paymentForm/${clientSecret}`)
-        // }
 
         dispatch(setCustomer(formData));
         navigate('/paymentForm')
@@ -166,19 +145,6 @@ function CustomerInfo() {
                                         Address Type
                                 </label>
                             </div>
-                            {/* <div>
-                                <select>
-                                    <option value="home">
-                                        Home
-                                    </option>
-                                    <option value="apartment">
-                                        Apartment
-                                    </option>
-                                    <option value="Business">
-                                        Business
-                                    </option>
-                                </select>
-                            </div> */}
                         </td>
                         <td>
                             <div>
@@ -200,14 +166,15 @@ function CustomerInfo() {
                             </div>
                         </td>
                     </tr>
-                    <tr className='formSubmitButtonTr'>
-                        <div className='submitButtonWrapper'>
+                    <tr>
+                        <td id='formSubmitButtonTd' colSpan={2}>
                             <button 
                                 style={{"width": "100%"}}
-                                className='button'>
+                                className='button'
+                                id='proceedButton'>
                                     Proceed To Payment
                             </button>
-                        </div>
+                        </td>
                     </tr>
                 </tbody>
             </table>

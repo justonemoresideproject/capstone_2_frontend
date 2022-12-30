@@ -22,7 +22,7 @@ function Register() {
     const [error, setError] = useState('')
 
     useEffect(function() {
-        if(auth.error != undefined) setError(auth.error.message)
+        // if(auth.error != undefined) setError(auth.error.response.data.error.message)
         if(auth.token) navigate('/')
     }, [auth])
 
@@ -42,7 +42,11 @@ function Register() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(register(formData))
+        try {
+            dispatch(register(formData))
+        } catch(err) {
+            setError(err)
+        }
     }
 
     if(auth.token) {
@@ -58,7 +62,7 @@ function Register() {
                 <table>
                     <tbody align="center">
                         <tr>
-                            <td>
+                            <td className='labelTd'>
                                 <label 
                                     className='label'
                                     htmlFor='username'>
@@ -76,7 +80,7 @@ function Register() {
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td className='labelTd'>
                                 <label 
                                     className='label'
                                     htmlFor='firstName'>
@@ -94,7 +98,7 @@ function Register() {
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td className='labelTd'>
                                 <label 
                                     className='label'
                                     htmlFor='lastName'>
@@ -111,7 +115,7 @@ function Register() {
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td className='labelTd'>
                                 <label 
                                     className='label'
                                     htmlFor='email'>
@@ -128,7 +132,7 @@ function Register() {
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td className='labelTd'>
                                 <label 
                                     className='label'
                                     htmlFor='phone'>
@@ -145,7 +149,7 @@ function Register() {
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td className='labelTd'>
                                 <label 
                                     className='label'
                                     htmlFor='password'>
@@ -162,7 +166,7 @@ function Register() {
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td colSpan={2}>
                                 <button 
                                     className='button'
                                     onClick={handleSubmit}>
@@ -171,7 +175,7 @@ function Register() {
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td colSpan={2}>
                                 <div className='error'>
                                     {`${error}`}
                                 </div>

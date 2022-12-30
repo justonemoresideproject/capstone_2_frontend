@@ -1,0 +1,111 @@
+.enlargedBackground {
+    width: 100vw;
+    height: 100%;
+
+    padding-top: 4%;
+
+    top: 3.5%;
+
+    position: fixed;
+
+    z-index: 999;
+
+    display: flexbox;
+    align-content: center;
+    text-align: center;
+
+    justify-content: center;
+
+    background-color: rgba(116, 113, 113, 0.83);
+
+    font-weight: bolder;
+}
+
+.enlargedProduct {
+    width: 80%;
+    height: 80%;
+
+    align-self: center;
+    align-content: center;
+    text-align: center;
+
+    position:relative;
+
+    margin: auto;
+
+    justify-content: center;
+
+    background-size: contain;
+    background-position: center;
+    background-repeat:no-repeat;
+}
+
+.enlargedName {
+    width: 45%;
+    text-size-adjust: 40%;
+    margin: auto;
+
+    top: 0%;
+
+    background-color: rgba(240, 248, 255, 0.533);
+}
+
+.enlargedNameContainer {
+    align-content: center;
+    width:max-content;
+}
+
+.enlargedTbody {
+    display:flexbox;
+    justify-content: center;
+    align-content: bottom;
+
+}
+
+.containerOfContainer {
+    display: flexbox;
+    flex-direction: column-reverse;
+    align-items: bottom;
+    justify-content: center;
+    margin-bottom: 0%;
+    height: 100%;
+}
+
+.cartFormContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: center;
+    height: 100%;
+}
+
+.addToCartForm {
+    align-self: flex-end;
+    width: 45%;
+    background-color: rgba(240, 248, 255, 0.533);
+}
+
+.enlargedCloseButton {
+    background-color: rgba(250, 0, 0, 0.485);
+    width: 10%;
+    height: 30%;
+    right: 25%;
+
+    font-weight:bolder;
+}
+
+.enlargedCloseButton:hover {
+    background-color: rgba(250, 0, 0, 0.761);
+}
+
+#addToCartButton {
+    width: 40%;
+}
+
+.input {
+    width: 20%;
+    height: 50%;
+    font-size: 1.1rem;
+
+    text-align: center;
+}

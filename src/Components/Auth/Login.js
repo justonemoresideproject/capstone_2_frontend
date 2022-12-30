@@ -1,7 +1,7 @@
 import '../ComponentCss/Auth.css'
 
 import { React, useState, useEffect } from 'react';
-import { login } from '../../actions/Auth';
+import { login, resetError } from '../../actions/Auth';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -16,10 +16,22 @@ function Login() {
 
     const [formData, setFormData] = useState(INITIAL_STATE)
     const [error, setError] = useState('')
+    const [opacity, setOpacity] = useState('errorFadeIn')
 
     useEffect(function() {
-        if(auth.error) setError(auth.error.message)
+        if(auth.error && auth.error != undefined) {
+            setError(auth.error.response.data.error.message)
+            setOpacity('errorFadeIn')
+            dispatch(resetError())
+        }
         if(auth.token) navigate('/')
+
+        const timeOut = setTimeout(() => {
+            setOpacity('errorFadeOut')
+        }, 300)
+
+        return () => clearInterval(timeOut)
+
     }, [auth])
 
     const handleChange = (e) => {
@@ -32,12 +44,12 @@ function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(login(formData))
-        // if(res.token){
-        //     return <Navigate to='/' />
-        // }
-        // console.log(res)
-        // setError(res)
+        try {
+            dispatch(login(formData))
+        } catch(err) {
+            console.log(err)
+            setError(err)
+        }
     }
 
     return (
@@ -74,7 +86,7 @@ function Login() {
                                 <label 
                                     htmlFor='password'
                                     className='label'>
-                                        PaWssword:
+                                        Password:
                                 </label>
                             </td>
                             <td>
@@ -88,7 +100,7 @@ function Login() {
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td colSpan={2}>
                                 <button 
                                     className='button' 
                                     onClick={handleSubmit}>
@@ -98,7 +110,7 @@ function Login() {
                         </tr>
                         <tr>
                             <td>
-                                <div className='error'>
+                                <div className={opacity}>
                                     {`${error}`}
                                 </div>
                             </td>

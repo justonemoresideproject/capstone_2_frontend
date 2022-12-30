@@ -16,5 +16,5 @@ export const returnText = (propertyText) => {
 export const returnPrice = (number) => {
     const newNum = +number;
 
-    return newNum.toFixed(2)
+    return `$${newNum.toFixed(2)}`
 }

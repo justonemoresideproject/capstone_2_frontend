@@ -27,6 +27,8 @@
 .App-header {
   overflow:hidden;
   background-image: url("background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
   justify-content: center;
   display: flexbox;
   flex-direction: column;
@@ -85,6 +87,10 @@
 
   border: solid;
   border-color: rgb(94, 90, 84);
+}
+
+tr {
+  justify-content: space-evenly;
 }
 
 .selectInput {

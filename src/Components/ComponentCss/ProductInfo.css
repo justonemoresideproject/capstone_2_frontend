@@ -2,7 +2,7 @@
     width: 95%;
     height: 95%;
     position: absolute;
-    background-color: rgba(163, 117, 68, 0.563);
+    
     display: block;
     margin: auto;
 
@@ -10,6 +10,8 @@
     right: 0px;
     top: 0px;
     bottom: 0px;
+
+    background-color: rgba(163, 117, 68, 0.563);
 }
 
 .productInfoContainer>button {

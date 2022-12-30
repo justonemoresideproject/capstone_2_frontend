@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom"
 
 import Product from './Product/Product'
 import { setTotal } from '../actions/Cart'
+import { returnPrice } from './Helpers/TextFunctions'
 
 const { TOKEN, BASE_URL } = require('../API/apiConfig.js')
 
@@ -59,28 +60,32 @@ function CheckOut() {
                 </thead>
                 <tbody>
                     {cartKeys.map((key, index) => {
-                        console.log(products[key])
                         total += (products[key].price * cartItems[key])
-                        return (
-                            <tr className='checkoutRow' key={`checkoutRow-${index}`}>
-                                <Product product={products[key]}  />
-                                <td>
-                                    {cartItems[key]}
-                                </td>
-                                <td>
-                                    {products[key].price}
-                                </td>
-                                <td>{products[key].price * cartItems[key]}</td>
-                            </tr>
-                        )
+                        if(cartItems[key] > 0) {
+                            return (
+                                <tr className='checkoutRow' key={`checkoutRow-${index}`}>
+                                    <td>
+                                        {products[key].name}
+                                    </td>
+                                    <td>
+                                        {cartItems[key]}
+                                    </td>
+                                    <td>
+                                        {returnPrice(products[key].price)}
+                                    </td>
+                                    <td>
+                                        {returnPrice(products[key].price * cartItems[key])}
+                                    </td>
+                                </tr>
+                            )}
                     })}
                 </tbody>
                 <tfoot>
                     <tr>
                         <td>
-                            Grand Total: {total}
+                            Grand Total: {returnPrice(total)}
                         </td>
-                        <td>
+                        <td colspan={3}>
                             <button 
                                 className='button' 
                                 onClick={() => proceedToPayment(total)}>

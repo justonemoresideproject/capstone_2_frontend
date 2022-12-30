@@ -34,6 +34,10 @@ function auth(state = INITIAL_STATE, action) {
         case 'SET_ERROR':
             return { ...state,
                 "error": action.payload }
+
+        case 'RESET_ERROR':
+            return { ...state,
+                "error": undefined }
         
         case 'RESET_TOKEN':
             console.log('RESET_TOKEN AUTH_REDUCER')

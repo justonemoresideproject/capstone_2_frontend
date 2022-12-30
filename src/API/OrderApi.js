@@ -4,8 +4,6 @@ class OrderApi {
     static async create(OrderInfo) {
         const res = CommonApi.request('orders/', OrderInfo, 'post')
 
-        console.log(res)
-
         return res
     }
 

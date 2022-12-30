@@ -1,19 +1,26 @@
 import { ADD_ORDER, SET_ORDERS, REMOVE_ORDER } from './types'
 
-const { create, remove, get, all } = require('../API/OrderApi')
+import OrderApi from '../API/OrderApi'
 
 function getOrderFromApi(id) {
     return async function(dispatch) {
-        const res = await get(id)
-
+        const res = await OrderApi.get(id)
         dispatch(addOrder(res.order))
     }
 }
 
 function getOrdersFromApi() {
     return async function(dispatch) {
-        const res = await all()
+        const res = await OrderApi.all()
         dispatch(setOrders(res.orders))
+    }
+}
+
+function sendOrderToApi(orderInfo) {
+    return async function(dispatch) {
+        const res = await OrderApi.create(orderInfo)
+        console.log(res)
+        dispatch(addOrder(orderInfo))
     }
 }
 
@@ -29,4 +36,4 @@ function removeOrder(id) {
     return { type: REMOVE_ORDER, payload: id}
 }
 
-export { getOrderFromApi, getOrdersFromApi, addOrder, removeOrder}
+export { sendOrderToApi, getOrderFromApi, getOrdersFromApi, addOrder, removeOrder}

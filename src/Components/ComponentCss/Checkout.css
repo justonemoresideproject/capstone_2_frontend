@@ -3,46 +3,56 @@
     height: 100%;
 
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
+    font-size: 1.6rem;
 
     color:rgb(0, 0, 0);
     font-weight: bold;
 
     overflow: hidden;
+
+    border: solid black;
+    border-spacing: 0px;
 }
 
-.checkoutTable>thead {
-    display:flex-box;
-    position: relative;
-    margin: 0px;
-    padding: 0px;
-
-    height: 20px;
+.checkoutTable>thead>tr {
+    border-spacing: 0px;
+    background-color: rgba(133, 79, 21, 0.729);
 }
 
-.checkoutTable>thead>td {
-    position: relative;
+.checkoutTable>thead>tr>td {
+    margin: 0%;
+    padding: 0%;
+    border-spacing: 0px;
+    border: solid black;
+
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
-.checkoutTable>thead>td>th {
-    position: absolute;
-    left: 0px;
-    right: 0px;
-    top: 0px;
-    bottom: 0px;
+.checkoutTable>thead>tr>td>th {
+    text-align: center;
+    align-self: center;
+    margin: auto;
+    justify-content: center;
+    width: 100%;
+}
+
+.checkoutTable>tfoot {
+    background-color: rgba(133, 79, 21, 0.729);
 }
 
 .checkoutRow {
-    background-color: rgba(133, 79, 21, 0.729);
+    background-color: rgba(239, 239, 239, 0.729);
 
     display:table-row;
-    /* width: 100vw; */
     height: 30vh;
 
 }
 
 .checkoutRow>td {
     min-width: 15vw;
+    border: solid black;
 }
 
 .button {

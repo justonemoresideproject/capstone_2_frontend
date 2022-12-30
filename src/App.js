@@ -6,8 +6,8 @@ import axios from 'axios'
 
 import { useDispatch } from 'react-redux'
 
-import {Elements} from '@stripe/react-stripe-js'
-import {loadStripe} from '@stripe/stripe-js'
+import { Elements } from '@stripe/react-stripe-js'
+import { loadStripe } from '@stripe/stripe-js'
 
 import AppRoutes from './Components/AppRoutes'
 import NavigationBar from './Components/Nav/Navbar'

@@ -27,7 +27,7 @@ function ProductsPage() {
                 <>
                     <ProductQueryForm products={products} />
                     {queryProducts == undefined ? 
-                        <ProductList products={products} rows={3}/> :
+                        <ProductList products={products} rows={3} /> :
                         <ProductList products={queryProducts} rows={3} />
                     }
                 </>

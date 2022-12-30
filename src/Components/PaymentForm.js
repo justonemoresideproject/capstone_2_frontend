@@ -1,12 +1,14 @@
 import './ComponentCss/PaymentForm.css'
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
+import axios from 'axios';
 import {useNavigate, useParams} from 'react-router-dom'
 import {CardElement, useElements, useStripe} from '@stripe/react-stripe-js'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { addRecentOrder, setCustomer } from '../actions/Customer'
+import { sendOrderToApi } from '../actions/Order'
 import { resetCart } from '../actions/Cart'
 
 const { TOKEN, BASE_URL } = require('../API/apiConfig.js')
@@ -21,12 +23,9 @@ function PaymentForm() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    console.log(store.customers)
-
     const [error, setError] = useState('')
 
     const cartKeys = Object.keys(store.cart)
-    console.log(cartKeys)
     let total = 0
     cartKeys.forEach(key => total += +store.products[key].price)
 
@@ -36,6 +35,12 @@ function PaymentForm() {
         if(!stripe || !elements) {
             return;
         }
+
+        // const {error: backendError, clientSecret} = async () => await axios.post(`${BASE_URL}/payment/create-payment-intent`, {
+        //     amount: total * 100,
+        //     paymentMehtodType: 'card',
+        //     currency: 'usd'
+        // }).then(r => r.data)
 
         // Create payment intent on the server
         const {error: backendError, clientSecret} = await fetch(`${BASE_URL}/payment/create-payment-intent`, {
@@ -65,36 +70,49 @@ function PaymentForm() {
         )
 
         if(stripeError) {
+            console.log(stripeError)
             return;
         }
         
         const cartItems = {}
         cartKeys.forEach(key => {
-            cartItems[key] = store.cart[key].quantity
+            cartItems[key] = store.cart[key]
         })
 
-        await fetch({
-            method: 'post',
-            url: `${BASE_URL}/orders`,
-            headers: {Authorization: `Bearer ${TOKEN}`},
-            data: {
-                "customerInfo": store.customer,
-                "products": cartItems
-            }
-        }).then(function(res) {
-            const recentOrder = {
-                "products": store.cart, 
-                "customerInfo": store.customers, 
-                "order": res
-            }
-            dispatch(addRecentOrder(recentOrder))
-            dispatch(resetCart())
-        }).then(function() {
-            navigate(`/successPage`)
-        }).catch(function(res) {
-            console.log('FAILED...')
-            setError(`${res}`)
-        })
+        const order = {
+            "customerInfo": store.customers,
+            "products": cartItems
+        }
+
+        console.log(order)
+
+        dispatch(sendOrderToApi(order))
+        dispatch(addRecentOrder(order))
+        dispatch(resetCart())
+        navigate(`/successPage`)
+
+        // await fetch({
+        //     method: 'post',
+        //     url: `${BASE_URL}/orders/`,
+        //     headers: {Authorization: `Bearer ${TOKEN}`},
+        //     data: {
+        //         "customerInfo": store.customer,
+        //         "products": cartItems
+        //     }
+        // }).then(function(res) {
+        //     const recentOrder = {
+        //         "products": store.cart, 
+        //         "customerInfo": store.customers, 
+        //         "order": res
+        //     }
+        //     dispatch(addRecentOrder(recentOrder))
+        //     dispatch(resetCart())
+        // }).then(function() {
+        //     navigate(`/successPage`)
+        // }).catch(function(res) {
+        //     console.log('FAILED...')
+        //     setError(`${res}`)
+        // })
     }
 
     const CARD_ELEMENT_OPTIONS = {
@@ -116,22 +134,38 @@ function PaymentForm() {
       };
 
     return (
-        <>
-            <h1>Card</h1>
             <form 
                 id="payment-form" 
                 onSubmit={handleSubmit}>
-                {/* <label 
-                    htmlFor="card-element">
-                        Card Details
-                </label> */}
-                <CardElement id="card-element" options={CARD_ELEMENT_OPTIONS} />
-                <button className='payButton'>
-                    Pay
-                </button>
+                <table>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <h1>
+                                Credit Card Information
+                            </h1>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <CardElement id="card-element" options={CARD_ELEMENT_OPTIONS} />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button id='payButton' className='button'>
+                                Pay
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>{error}</div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
             </form>
-            <div>{error}</div>
-        </>
     )
 }
 

@@ -1,22 +1,12 @@
 import axios from 'axios'
 
-import { SET_TOKEN, SET_AUTH_INFO, RESET_AUTH, RESET_TOKEN, SET_ERROR } from './types'
+import { SET_TOKEN, SET_AUTH_INFO, RESET_AUTH, RESET_TOKEN, SET_ERROR, RESET_ERROR } from './types'
 import { BASE_URL } from '../API/apiConfig'
 
 import AuthApi from '../API/AuthApi'
 
 function login(authInfo) {
     return async function(dispatch) {
-        // const res = await AuthApi.authenticate(authInfo).then(function(res) {
-        //     console.log(res)
-        //     console.log('Auth Action')
-        //     dispatch(setAuthInfo({ userId: res.userId, isAdmin: res.isAdmin, token: res.token }))
-        // }).catch(function(err) {
-        //     dispatch(setError(err)) 
-        // })
-
-        // console.log(res)
-
         console.log(authInfo)
 
         try {
@@ -33,6 +23,7 @@ function login(authInfo) {
                 dispatch(setAuthInfo({ userId, isAdmin, token }))})
             .catch(function(err) {
                 dispatch(setError(err))
+                return err
             })
 
             return res
@@ -59,15 +50,21 @@ function register(userInfo) {
             .then(function(res) {
                 dispatch(setAuthInfo({ userId: res.userId, isAdmin: res.isAdmin, token: res.token }))})
             .catch(function(err) {
-                dispatch(setError(err))
+                // dispatch(setError(err))
+                return err
             })
 
             return res
         } catch(err) {
-            dispatch(setError(err))
+            // dispatch(setError(err))
+            console.log(err)
             return err
         }
     }
+}
+
+function resetError() {
+    return { type: RESET_ERROR }
 }
 
 function setToken(token) {
@@ -99,4 +96,4 @@ function setAuthInfo(authInfo) {
 //     return { type: LOGGIN_FAILURE, payload: status }
 // }
 
-export { login, register, setAuthInfo, setToken, resetToken, setError }
+export { login, register, setAuthInfo, setToken, resetToken, setError, resetError }

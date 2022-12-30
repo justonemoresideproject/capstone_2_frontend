@@ -1,31 +1,45 @@
-.customerInfoTable {
-    display: flex;
-    align-items: center;
-    justify-content:center;
+.receiptTable {
+    background-color: aliceblue;
+    max-width: 30%;
+    border-collapse: collapse;
 
-    color:rgb(255, 255, 255);
-
-    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 5%;
 }
 
-.customerInfoTable>tbody {
-    background-color: rgba(62, 36, 7, 0.596);
-    border-radius: 8%;
-
-    font-size: 1.5rem;
+.receiptTable thead, tbody{
+    border-bottom: dashed black .1rem;
 }
 
-.productInfoTable {
-    display: flex;
-    align-items: centers;
-    justify-content: center;
-
-    color:rgb(255, 255, 255);
+.successTd {
+    font-size: 1.8rem;
+    font-weight: bolder;
 }
 
-.productInfoTable>tbody {
-    background-color: rgba(62, 36, 7, 0.596);
-    border-radius: 6%;
+.receiptTd {
+    font-size: 1.5rem
+}
 
-    font-size: 1.5rem;
+.receiptLabel, .info {
+    white-space: nowrap;
+}
+
+.receiptLabel {
+    text-align: left;
+}
+
+.info {
+    text-align: right;
+}
+
+.totalTr {
+    border-bottom: .05rem black dashed;
+}
+
+#grandTotalTr {
+    border-top: .1rem black dashed;
+}
+
+#grandTotalTd {
+    font-size: 1.2rem;
+    font-weight: bolder;
 }

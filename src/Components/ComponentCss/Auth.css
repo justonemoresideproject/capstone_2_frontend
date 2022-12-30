@@ -2,12 +2,27 @@
     font-size: 2rem;
 }
 
-.error {
+.errorFadeIn {
     color: rgb(197, 1, 1);
     font-size: 2rem;
     font-weight: bolder;
 
     position: absolute;
+
+    text-align: center;
+}
+
+.errorFadeOut {
+    color: rgb(197, 1, 1);
+    font-size: 2rem;
+    font-weight: bolder;
+
+    position: absolute;
+
+    text-align: center;
+
+    opacity: 0;
+    transition: opacity 2.5s ease-out;
 }
 
 table {
@@ -18,4 +33,22 @@ table {
 tr {
     margin-top: auto;
     margin-bottom: auto;
+
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+}
+
+td {
+    justify-content: center;
+    align-content: center;
+}
+
+.input {
+    width: 100%;
+    text-align: left;
+}
+
+.button {
+    width: 100%;
 }
