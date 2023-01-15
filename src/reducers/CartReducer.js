@@ -12,7 +12,7 @@ function cart(state = INITIAL_STATE, action) {
                 return { ...state,
                         [action.productId]: state[action.productId] - 1 }
             }
-            if(state[action.productId] = 1) {
+            if(state[action.productId] === 1) {
                 const newState = { ...state }
 
                 delete newState[action.productId]

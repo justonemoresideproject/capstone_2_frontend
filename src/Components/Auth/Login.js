@@ -56,7 +56,7 @@ function Login() {
         <>
             <h1>Login</h1>
             <form 
-                className='loginForm' 
+                className='authForm' 
                 onSubmit={handleSubmit}>
                 <table style={{
                     "marginLeft": "auto",
@@ -71,7 +71,7 @@ function Login() {
                                         Username:
                                 </label>
                             </td>
-                            <td>
+                            <td className='authInputContainer'>
                                 <input 
                                     type='text' 
                                     className='input'
@@ -89,7 +89,7 @@ function Login() {
                                         Password:
                                 </label>
                             </td>
-                            <td>
+                            <td className='authInputContainer'>
                                 <input 
                                     type='password' 
                                     className='input'

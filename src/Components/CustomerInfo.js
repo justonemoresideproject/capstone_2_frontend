@@ -2,13 +2,14 @@ import './ComponentCss/CustomerInfo.css'
 
 import React, { useEffect, useState } from 'react'
 
-import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-
 import { setCustomer } from '../actions/Customer'
-
+import { isValidEmail, isValidPhoneNumber } from './Helpers/TextFunctions'
 import { BASE_URL } from '../API/apiConfig'
 
+import CustomError from './CustomError'
+
+import { useSelector, useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 function CustomerInfo() {
     const dispatch = useDispatch();
@@ -21,13 +22,27 @@ function CustomerInfo() {
         firstName: '',
         lastName: '',
         email: '',
-        address: '',
+        street: '',
+        city: '',
+        state: '',
+        country: '',
         addressType: 'home',
         phone: ''
     };
 
     const [formData, setFormData] = useState(INITIAL_STATE);
-    const [error, setError] = useState('')
+    const [error, setError] = useState([])
+    const [opacity, setOpacity] = useState('errorFadeIn')
+
+    useEffect(function() {
+        if(error.length >= 0) {
+            const timeOut = setTimeout(() => {
+                setOpacity('errorFadeOut')
+            }, 5000)
+    
+            return () => clearInterval(timeOut)
+        }
+    }, [error])
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -43,17 +58,43 @@ function CustomerInfo() {
         Object.keys(cart).forEach(key => {
             total += +store.products[key].price
         })
-        console.log(total)
 
-        dispatch(setCustomer(formData));
-        navigate('/paymentForm')
+        if(confirmValidInformation()) {
+            dispatch(setCustomer(formData));
+            navigate('/paymentForm')
+        }
+    }
+
+    const confirmValidInformation = () => {
+        const errors = []
+        if(formData.firstName.length < 1) {
+            errors.push('First Name must be at least 1 character long')
+        }
+        if(formData.lastName.length < 1) {
+            errors.push('Last Name must be at least 1 character long')
+        }
+        if(!isValidEmail(formData.email)) {
+            errors.push('Invalid Email Address')
+        }
+        
+        if(errors.length !== 0) {
+            // while(error.length > 0) {
+            //     error.pop()
+            // }
+            // errors.forEach(err => error.push(err))
+            setError(errors)
+            console.log(errors)
+            console.log(error)
+            setOpacity('errorFadeIn')
+            return false
+        }
     }
 
     return (
-        <form className='customerInfoForm' onSubmit={handleSubmit}>
+        <form className='baseElement' id='customerInfoForm' onSubmit={handleSubmit}>
             <table>
-                <tbody className='formTBody'>
-                    <tr className='customerInfoRow'>
+                <tbody id='personalInfoTbody'>
+                    <tr>
                         <td>
                             <label 
                                 htmlFor='firstName' 
@@ -62,21 +103,21 @@ function CustomerInfo() {
                             </label>
                         </td>
                         <td>
+                            <label 
+                                htmlFor='lastName' 
+                                className='label'>
+                                Last Name
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             <input 
                                 type='text' 
                                 className='input' 
                                 name='firstName'
                                 value={formData.firstName}
                                 onChange={handleChange} />
-                        </td>
-                    </tr>
-                    <tr className='customerInfoRow'>
-                        <td>
-                            <label 
-                                htmlFor='lastName' 
-                                className='label'>
-                                Last Name
-                            </label>
                         </td>
                         <td>
                             <input 
@@ -87,14 +128,25 @@ function CustomerInfo() {
                                 onChange={handleChange} />
                         </td>
                     </tr>
-                    <tr className='customerInfoRow'>
+                </tbody>
+                <tbody id='contactInfoTbody'>
+                    <tr>
                         <td>
                             <label 
                                 htmlFor='email' 
                                 className='label'>
-                                Email
+                                    Email
                             </label>
                         </td>
+                        <td>
+                            <label 
+                                htmlFor='phone' 
+                                className='label'>
+                                    Phone
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
                         <td>
                             <input 
                                 type='text' 
@@ -103,22 +155,61 @@ function CustomerInfo() {
                                 value={formData.email} 
                                 onChange={handleChange} />
                         </td>
-                    </tr>
-                    <tr className='customerInfoRow'>
-                        <td>
-                            <label 
-                                htmlFor='phone' 
-                                className='label'>
-                                    Phone
-                            </label>
-                        </td>
                         <td>
                             <input 
                                 type='text' 
                                 className='input' 
                                 name='phone' 
                                 value={formData.phone} 
-                                onChange={handleChange} />
+                                onChange={handleChange}
+                                error={formData.phone ? isValidPhoneNumber(formData.phone) ? '' : 'Invalid Phone Number' : 'Phone Number Required'} />
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody id='addressInfoTbody'>
+                    <tr>
+                        <td>
+                            <label
+                                htmlFor='country' 
+                                className='label'>
+                                Country
+                            </label>
+                        </td>
+                        <td>
+                            <label className='label'>
+                                State
+                            </label>
+                        </td>
+                        <td>
+                            <label className='label'>
+                                City
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input
+                                type='text'
+                                className='input'
+                                name='country'
+                                onChange={handleChange}
+                                value={formData.country} />
+                        </td>
+                        <td>
+                            <input
+                                type='text'
+                                className='input'
+                                name='state'
+                                onChange={handleChange}
+                                value={formData.state} />
+                        </td>
+                        <td>
+                            <input
+                                type='text'
+                                className='input'
+                                name='city'
+                                onChange={handleChange}
+                                value={formData.city} />
                         </td>
                     </tr>
                     <tr>
@@ -128,48 +219,48 @@ function CustomerInfo() {
                             </label>
                         </td>
                         <td>
-                            <input 
-                            type='text' 
-                            className='input'
-                            name="address"
-                            onChange={handleChange}
-                            value={formData.address} />
-                        </td>
-                    </tr>
-                    <tr id='addressTypeRow' className='customerInfoRow'>
-                        <td>
-                            <div>
-                                <label 
-                                    htmlFor='addressType' 
-                                    className='label'>
-                                        Address Type
-                                </label>
-                            </div>
-                        </td>
-                        <td>
-                            <div>
-                                <select 
-                                    className="selectInput"
-                                    id="addressType"
-                                    name="addressType"
-                                    onChange={handleChange}>
-                                    <option value="home">
-                                        Home
-                                    </option>
-                                    <option value="apartment">
-                                        Apartment
-                                    </option>
-                                    <option value="Business">
-                                        Business
-                                    </option>
-                                </select>
-                            </div>
+                            <label 
+                                htmlFor='addressType' 
+                                className='label'>
+                                    Address Type
+                            </label>
                         </td>
                     </tr>
                     <tr>
-                        <td id='formSubmitButtonTd' colSpan={2}>
+                        <td>
+                            <input 
+                                type='text' 
+                                className='input'
+                                name="street"
+                                onChange={handleChange}
+                                value={formData.street} />
+                        </td>
+                        <td>
+                            <select 
+                                className="selectInput"
+                                id="addressType"
+                                name="addressType"
+                                onChange={handleChange}>
+                                <option value="home">
+                                    Home
+                                </option>
+                                <option value="apartment">
+                                    Apartment
+                                </option>
+                                <option value="Business">
+                                    Business
+                                </option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody id='submitButtonTbody'>
+                    <tr>
+                        <td id='noBorderTd' colSpan={2}>
                             <button 
-                                style={{"width": "100%"}}
+                                style={{
+                                    "width": "30%"
+                                }}
                                 className='button'
                                 id='proceedButton'>
                                     Proceed To Payment
@@ -178,7 +269,12 @@ function CustomerInfo() {
                     </tr>
                 </tbody>
             </table>
-            <div>{error}</div>
+            <ul id='errorUl' className={opacity}>
+                {/* <CustomError errors={error} opacity={opacity} tag='li' /> */}
+                {error.map(err => {
+                    return <li>{err}</li>
+                })}
+            </ul>
         </form>
     )
 }

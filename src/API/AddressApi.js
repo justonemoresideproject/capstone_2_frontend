@@ -13,8 +13,8 @@ class AddressApi {
         return res
     }
 
-    static async all() {
-        const res = CommonApi.request(`addresses/`)
+    static async all(token) {
+        const res = CommonApi.request(`addresses/`, {}, "get", token)
 
         return res
     }

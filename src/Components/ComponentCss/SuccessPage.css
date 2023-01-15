@@ -6,7 +6,7 @@
     margin-top: 5%;
 }
 
-.receiptTable thead, tbody{
+.receiptTable>thead, .receiptTable>tbody{
     border-bottom: dashed black .1rem;
 }
 

@@ -55,7 +55,14 @@
     border: solid black;
 }
 
-.button {
-    width: 8vw;
-    height: 4.5vh;
+#purchaseButton {
+    width: 95%;
+    height: 100%;
+    padding: 0px;
+    margin: auto;
+    border: 0px;
+
+    position: relative;
+
+    display:block;
 }

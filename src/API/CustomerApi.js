@@ -1,4 +1,4 @@
-const CommonApi = require('./CommonApi')
+import CommonApi from './CommonApi'
 
 class CustomerApi {
     static async create(customerInfo) {
@@ -13,8 +13,8 @@ class CustomerApi {
         return res
     }
 
-    static async all() {
-        const res = CommonApi.request('customers/')
+    static async all(token) {
+        const res = CommonApi.request('customers/', {}, "get", token)
 
         return res
     }

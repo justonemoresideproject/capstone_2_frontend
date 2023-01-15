@@ -58,7 +58,7 @@ function Register() {
     return (
         <>
             <h1>Register</h1>
-            <form className=''>
+            <form className='authForm'>
                 <table>
                     <tbody align="center">
                         <tr>
@@ -69,10 +69,10 @@ function Register() {
                                         Username:
                                 </label>
                             </td>
-                            <td>
+                            <td className='authInputContainer'>
                                 <input 
                                     type='text' 
-                                    className='input'
+                                    className='authInput'
                                     name='username' 
                                     onChange={handleChange} 
                                     value={formData.username} 
@@ -87,7 +87,7 @@ function Register() {
                                         First Name:
                                 </label>
                             </td>
-                            <td>
+                            <td className='authInputContainer'>
                                 <input 
                                     type='text' 
                                     className='input'
@@ -105,7 +105,7 @@ function Register() {
                                         Last Name:
                                 </label>
                             </td>
-                            <td>
+                            <td className='authInputContainer'>
                                 <input 
                                     className='input'
                                     type='text' 
@@ -122,7 +122,7 @@ function Register() {
                                         Email:
                                 </label>
                             </td>
-                            <td>
+                            <td className='authInputContainer'>
                                 <input 
                                     className='input'
                                     type='text' 
@@ -139,7 +139,7 @@ function Register() {
                                         Phone:
                                 </label>
                             </td>
-                            <td>
+                            <td className='authInputContainer'>
                                 <input 
                                     className='input'
                                     type='number' 
@@ -156,7 +156,7 @@ function Register() {
                                         Password:
                                 </label>
                             </td>
-                            <td>
+                            <td className='authInputContainer'>
                                 <input 
                                     className='input'
                                     type='password' 

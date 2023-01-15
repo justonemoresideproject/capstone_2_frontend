@@ -58,10 +58,20 @@
     background-color: rgba(133, 79, 21);
     color: white;
     border: none;
+
+    height: 100%;
+    width: 100%;
+    font-size: 1.25rem;
 }
 
 .queryButton:hover {
     background-color:rgb(153, 100, 44)
+}
+
+.selectInput {
+    height: 100%;
+    width: 100%;
+    font-size: 1.25rem;
 }
 
 .textInput {
@@ -71,22 +81,6 @@
     padding: 1px;
     padding-top: 0px;
     padding-bottom: 0px;
-}
-
-button {
-    height: 100%;
-    width: 100%;
-    font-size: 1.25rem;
-}
-
-select {
-    height: 100%;
-    width: 100%;
-    font-size: 1.25rem;
-}
-
-.input {
-    box-sizing: border-box;
 }
 
 .labelTd {

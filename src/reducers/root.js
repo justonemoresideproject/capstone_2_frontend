@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 
+import admin from './AdminReducer'
 import auth from './AuthReducer'
 // import addresses from './AddressReducer'
 import user from './UserReducer'
@@ -11,6 +12,7 @@ import products from './ProductReducer'
 import error from './ErrorReducer'
 
 export default combineReducers({
+    admin,
     auth,
     cart,
     customers,

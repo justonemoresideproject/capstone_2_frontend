@@ -1,0 +1,6 @@
+#!/bin/bash
+error=$(npm audit fix --force)
+
+
+echo $error
+echo $error

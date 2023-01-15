@@ -9,14 +9,13 @@ import { addItemToCart } from '../../actions/Cart'
 function EnlargedProduct({product, setEnlargedProduct}) {
     const dispatch = useDispatch();
     const cart = useSelector(store => store.cart)
-    const quantity = cart[product.id] === NaN || `NaN` ? 0 : cart[product.id]
+    const quantity = cart[product.id] === NaN || cart[product.id] === `NaN` || cart[product.id] === undefined ? 0 : cart[product.id]
     const INITIAL_STATE = { 
         id : product.id,
         quantity : quantity
     };
 
     const [formData, setFormData] = useState(INITIAL_STATE)
-    console.log(formData)
 
     const handleChange = (e) => {
         e.preventDefault()
@@ -82,6 +81,7 @@ function EnlargedProduct({product, setEnlargedProduct}) {
                                 <input 
                                     type='number' 
                                     className='input'
+                                    id='enlargedInput'
                                     name='quantity'
                                     onChange={handleChange}
                                     value={+formData.quantity} />

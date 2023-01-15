@@ -85,9 +85,10 @@ function CheckOut() {
                         <td>
                             Grand Total: {returnPrice(total)}
                         </td>
-                        <td colspan={3}>
+                        <td colSpan={3} className='buttonTd'>
                             <button 
                                 className='button' 
+                                id='purchaseButton'
                                 onClick={() => proceedToPayment(total)}>
                                     Purchase
                             </button>

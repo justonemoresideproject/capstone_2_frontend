@@ -1,7 +1,9 @@
 import React from 'react'
 
-function Item(item) {
+function Item({item}) {
     const itemKeys = Object.keys(item)
+    console.log(item)
+    console.log(itemKeys)
 
     return (
         <tr>

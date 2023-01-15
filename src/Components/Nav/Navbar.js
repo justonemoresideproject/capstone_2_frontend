@@ -1,3 +1,5 @@
+import React from 'react'
+
 import '../ComponentCss/Navbar2.css'
 
 import { useDispatch, useSelector } from 'react-redux';

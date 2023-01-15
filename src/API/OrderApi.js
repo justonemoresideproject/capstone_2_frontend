@@ -7,20 +7,20 @@ class OrderApi {
         return res
     }
 
-    static async get(id) {
-        const res = CommonApi.request(`orders/${id}`)
+    static async get(id, token) {
+        const res = CommonApi.request(`orders/${id}`, token)
 
         return res
     }
 
-    static async all() {
-        const res = CommonApi.request('orders/')
+    static async all(token) {
+        const res = CommonApi.request('orders/', {}, "get", token)
 
         return res
     }
 
-    static async remove(id) {
-        const res = CommonApi.request(`orders/${id}`, {}, 'delete')
+    static async remove(id, token) {
+        const res = CommonApi.request(`orders/${id}`, token, 'delete')
 
         return res
     }

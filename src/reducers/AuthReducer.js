@@ -19,18 +19,6 @@ function auth(state = INITIAL_STATE, action) {
                 "isAdmin": action.payload.isAdmin
             }
 
-        case 'SET_ALL_ADDRESSES':
-            return { ...state,
-                "addresses": action.payload }
-
-        case 'SET_ALL_CUSTOMERS':
-            return { ...state,
-                "customers": action.payload }
-
-        case 'SET_ALL_ORDERS':
-            return { ...state,
-                "orders": action.payload }
-
         case 'SET_ERROR':
             return { ...state,
                 "error": action.payload }

@@ -1,7 +1,7 @@
 import { React, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { getOrdersFromApi } from '../../actions/Order'
+import { getAllOrders } from '../../actions/Admin'
 import Order from './Order'
 import ItemList from '../ItemList'
 
@@ -11,14 +11,11 @@ import ItemList from '../ItemList'
  */
 
 function Orders() {
-    const orders = useSelector(state => state.auth.orders)
+    const orders = useSelector(store => store.admin.orders.orders)
+    const token = useSelector(store => store.auth.token)
     const dispatch = useDispatch()
 
-    useEffect(function() {
-        dispatch(getOrdersFromApi)
-    }, [orders])
-
-    if(orders == undefined) {
+    if(orders == undefined || orders.message != undefined) {
         return (
             <h1>Looks like you don't have any orders yet...</h1>
         )
@@ -26,18 +23,6 @@ function Orders() {
 
     return (
         <ItemList items={orders} />
-        // <table>
-        //     <thead>
-        //         <td></td>
-        //     </thead>
-        //     <tbody>
-        //         {orders.map(order => {
-        //             return (
-        //                 <Order order={order}/>
-        //             )
-        //         })}
-        //     </tbody>
-        // </table>
     )
 }
 

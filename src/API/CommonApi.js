@@ -3,11 +3,11 @@ import axios from 'axios'
 const { TOKEN, BASE_URL } = require('./apiConfig.js')
 
 class CommonApi {
-    static async request(endpoint, data = {}, method = "get") {
+    static async request(endpoint, data = {}, method = "get", token = TOKEN) {
         console.debug("API Call:", endpoint, data, method);
         
         const url = `${BASE_URL}/${endpoint}`;
-        const headers = { Authorization: `Bearer ${TOKEN}` };
+        const headers = { Authorization: `Bearer ${token}` };
         const params = (method === "get")
             ? data
             : {};

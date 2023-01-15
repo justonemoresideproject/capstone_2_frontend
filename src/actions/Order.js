@@ -36,4 +36,4 @@ function removeOrder(id) {
     return { type: REMOVE_ORDER, payload: id}
 }
 
-export { sendOrderToApi, getOrderFromApi, getOrdersFromApi, addOrder, removeOrder}
+export { sendOrderToApi, getOrderFromApi, getOrdersFromApi, addOrder, setOrders, removeOrder}

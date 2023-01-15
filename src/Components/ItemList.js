@@ -1,10 +1,11 @@
 import React from 'react'
 
+import { returnText } from './Helpers/TextFunctions'
 import Item from './Item'
 
-function ItemList(items) {
-    const itemKeys = Object.keys(items)
-    const headerKeys = Object.keys(items[itemKeys[0]])
+function ItemList({items}) {
+    console.log(items)
+    const headerKeys = Object.keys(items[0])
 
     return (
         <table>
@@ -12,17 +13,17 @@ function ItemList(items) {
                 <tr>
                     {headerKeys.map((key, index) => {
                         return (
-                            <th key={index}>{key}</th>
+                            <th key={`${index}-${key}`}>{returnText(key)}</th>
                         )
                     })}
                 </tr>
             </thead>
             <tbody>
-                {itemKeys.map((key, index) => {
+                {items.map((item, index) => {
                     return (
                         <Item 
-                            item={items[key]} 
-                            key={index}
+                            item={item} 
+                            key={`${index}-${items.id}`}
                         />
                     )
                 })}
