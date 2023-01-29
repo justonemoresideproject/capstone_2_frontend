@@ -1,19 +1,19 @@
 import { React, useState, useEffect } from 'react' 
 import { useDispatch, useSelector } from 'react-redux'
 
-import { getAddressesFromApi } from '../../actions/Address'
-import Address from './Address'
+import { getAddressesFromApi, updateAddress } from '../../actions/Address'
 
-import ItemList from '../ItemList'
+import ItemList from '../Helpers/HelperComponents/ItemList'
 
 function Addresses() {
     const dispatch = useDispatch();
-    const addresses = useSelector(state => state.auth.addresses)
-    // const addressKeys = Object.keys(addresses)
+    const addresses = useSelector(state => state.admin.addresses)
 
     useEffect(function() {
         dispatch(getAddressesFromApi)
     }, [addresses])
+
+    console.log(addresses)
 
     if(addresses == undefined) {
         return (
@@ -24,23 +24,7 @@ function Addresses() {
     }
 
     return(
-        <ItemList items={addresses} />
-        
-        // <table>
-        //     <thead>
-        //         <th>ID</th>
-        //         <th>Address</th>
-        //         <th>Type</th>
-        //         <th>Customer</th>
-        //     </thead>
-        //     <tbody>
-        //         {addressKeys.map(key => {
-        //             return (
-        //                 <Address info={addresses[key]} />
-        //             )
-        //         })}
-        //     </tbody>
-        // </table>
+        <ItemList items={addresses} edit={true} action={updateAddress} />
     )
 }
 

@@ -14,7 +14,9 @@ function getAdminInfo(token) {
         try {
             const {orders} = await OrderApi.all(token)
             const {customers} = await CustomerApi.all(token)
-            const {addresses} = await AddressApi.all(token)
+            const addresses = await AddressApi.all(token)
+
+            console.log(`Orders: ${orders}`)
 
             dispatch(setAdminInfo({orders, customers, addresses}))
         } catch(err) {

@@ -1,39 +1,35 @@
-import { SET_FIRST_NAME, SET_LAST_NAME, SET_FULLNAME, SET_IS_ADMIN, SET_USER_ADDRESSES, SET_AUTH_INFO, SET_USER_ID, SET_USERNAME, SET_USER_INFO, SET_PHONE_NUM, SET_EMAIL, RESET_USER, SET_USER_ORDERS } from './types'
+import { SET_FIRST_NAME, SET_LAST_NAME, SET_FULLNAME, SET_IS_ADMIN, SET_USER_ADDRESSES, SET_AUTH_INFO, SET_USER_ID, SET_USERNAME, SET_USER_PROFILE, SET_PHONE_NUM, SET_EMAIL, RESET_USER, SET_USER_ORDERS } from './types'
 import { addOrder } from './Order'
 import UserApi from '../API/UserApi'
 // import { getOrders, getProfile, getAddresses, editProfile } from '../API/UserApi'
 
-function getUserOrdersFromApi(id) {
+function getUserOrdersFromApi(token, userId) {
     return async function(dispatch) {
-        const res = await UserApi.getOrders(id)
+        const res = await UserApi.getOrders(token, userId)
 
-        dispatch(setUserOrders)
-        
-        return res
+        dispatch(setUserOrders(res.orders))
     }
 }
 
-function getUserAddressesFromApi(id) {
+function getUserAddressesFromApi(token, id) {
     return async function(dispatch) {
-        const res = await UserApi.getAddresses(id)
+        const res = await UserApi.getAddresses(token, id)
 
         dispatch(setUserAddresses(res))
     }
 }
 
-function getUserProfileFromApi(id) {
+function getUserProfileFromApi(token, id) {
     return async function(dispatch) {
-        const res = await UserApi.getProfile(id)
+        const res = await UserApi.getProfile(token, id)
 
         dispatch(setUserInfo(res.user))
-
-        return res
     }
 }
 
-function changeProfileFromApi(id, info) {
+function changeProfileFromApi(token, id, info) {
     return async function(dispatch) {
-        const res = await UserApi.editProfile(id, info)
+        const res = await UserApi.editProfile(token, id, info)
 
         dispatch(setUserInfo(res))
         
@@ -42,7 +38,7 @@ function changeProfileFromApi(id, info) {
 }
 
 function setUserInfo(info) {
-    return { type: SET_USER_INFO, payload: info }
+    return { type: SET_USER_PROFILE, payload: info }
 }
 
 function setUserId(id) {

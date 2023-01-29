@@ -1,26 +1,28 @@
 import CommonApi from './CommonApi'
 
 class UserApi {
-    static async getOrders(userId) {
-        const res = CommonApi.request(`users/orders/${userId}`)
+    static async getOrders(token, userId) {
+        const res = CommonApi.request(`users/orders/`, {userId}, "get", token)
+
+        console.log(res)
 
         return res
     }
 
-    static async getProfile(userId) {
-        const res = CommonApi.request(`users/${userId}`)
+    static async getProfile(token, userId) {
+        const res = CommonApi.request(`users/${userId}`, {}, "get", token)
 
         return res
     }
 
-    static async getAddresses(userId) {
-        const res = CommonApi.request(`users/addresses/${userId}`)
+    static async getAddresses(token, userId) {
+        const res = CommonApi.request(`users/addresses/${userId}`, {}, "get", token)
 
         return res
     }
 
-    static async editProfile(userId, userInfo) {
-        const res = CommonApi.request(`users/${userId}`, userInfo, "patch")
+    static async editProfile(token, userId, userInfo) {
+        const res = CommonApi.request(`users/${userId}`, userInfo, "patch", token)
 
         return res
     }

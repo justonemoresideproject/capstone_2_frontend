@@ -1,6 +1,6 @@
 import { ADD_CUSTOMER, ADD_RECENT_ORDER, SET_CUSTOMER, SET_CUSTOMERS, REMOVE_CUSTOMER, SET_SECRET } from './types'
 
-const { create, remove, get, all } = require('../API/CustomerApi')
+const { create, remove, get, all, update } = require('../API/CustomerApi')
 
 function getCustomerFromApi(id) {
     return async function(dispatch) {
@@ -25,6 +25,14 @@ function addCustomerToApi(customerInfo) {
         const res = await create(customerInfo)
 
         dispatch(addCustomer(customerInfo))
+    }
+}
+
+function updateCustomerToApi(token, customerInfo) {
+    return async function(dispatch) {
+        const res = await update(token, customerInfo)
+
+        dispatch(setCustomer(res.customer))
     }
 }
 
@@ -60,4 +68,4 @@ function removeCustomer(id) {
     return {type: REMOVE_CUSTOMER, payload: id}
 }
 
-export { getCustomerFromApi, addRecentOrder, getCustomersFromApi, addCustomerToApi, setCustomer, setSecret, removeCustomerFromApi }
+export { getCustomerFromApi, addRecentOrder, getCustomersFromApi, addCustomerToApi, updateCustomerToApi, setCustomer, setSecret, removeCustomerFromApi }

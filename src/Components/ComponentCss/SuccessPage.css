@@ -1,9 +1,11 @@
-.receiptTable {
+#receiptTable {
     background-color: aliceblue;
     max-width: 30%;
     border-collapse: collapse;
 
     margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .receiptTable>thead, .receiptTable>tbody{

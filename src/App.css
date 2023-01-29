@@ -1,4 +1,4 @@
-.App {
+#App {
   text-align: center;
 }
 
@@ -24,7 +24,7 @@
   color: white;
 } */
 
-.App-header {
+#App-header {
   overflow:hidden;
   background-image: url("background.jpg");
   background-repeat: no-repeat;
@@ -80,6 +80,14 @@
 .button:hover {
   /* box-shadow: 1.5px 1px rgb(107, 56, 2); */
   background-color: rgb(183, 122, 57);
+}
+
+.hide {
+  opacity: 0.1;
+}
+
+.show {
+  opacity: 1;
 }
 
 .input {

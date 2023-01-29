@@ -19,6 +19,12 @@ class CustomerApi {
         return res
     }
 
+    static async update(token, customerInfo) {
+        const res = CommonApi.request('customers/', customerInfo, 'patch', token)
+
+        return res
+    }
+
     static async remove(id) {
         const res = CommonApi.request(`customers/${id}`,{}, 'delete')
 

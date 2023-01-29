@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import ItemList from '../ItemList'
+import ItemList from '../Helpers/HelperComponents/ItemList'
 import { getUserOrdersFromApi } from '../../actions/User'
 
 /**

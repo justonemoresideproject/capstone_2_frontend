@@ -1,3 +1,12 @@
 .baseElement {
     background-color: rgba(233, 233, 233, 0.686);
+
+    min-width: 80vw;
+    min-height: 80vh;
+    height: 100%;
+
+    padding: none;
+    margin-top: 2%;
+    margin-left: auto;
+    margin-right: auto;
 }

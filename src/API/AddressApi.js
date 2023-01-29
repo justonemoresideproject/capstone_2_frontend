@@ -14,7 +14,13 @@ class AddressApi {
     }
 
     static async all(token) {
-        const res = CommonApi.request(`addresses/`, {}, "get", token)
+        const res = await CommonApi.request(`addresses`, {}, "get", token)
+        
+        return res
+    }
+
+    static async update(token, addressInfo) {
+        const res = CommonApi.request(`addresses/${addressInfo.id}`, addressInfo, "patch", token)
 
         return res
     }

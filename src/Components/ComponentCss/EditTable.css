@@ -1,0 +1,35 @@
+#editTableForm {
+    font-size: 100%;
+
+    margin: 2%;
+
+    
+    display: inline-flex;
+    right: auto;
+    left: auto;
+}
+
+#editTableForm>table {
+    table-layout: auto;
+    border-collapse: collapse;
+    box-sizing: border-box;
+}
+
+#editTableForm>table>thead>tr>th {
+    word-wrap: break-word;
+}
+
+#editTableForm>table>tbody {
+    display:flexbox;
+}
+
+#editTableForm>table>tbody>tr>td {
+    word-wrap: break-word;
+    box-sizing: border-box;
+    width: 1px;
+}
+
+#editTableForm>table>tbody>tr>td>input {
+    margin: 0px;
+    padding: 0px;
+}

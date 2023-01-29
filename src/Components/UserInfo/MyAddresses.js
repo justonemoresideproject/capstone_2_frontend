@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import ItemList from '../ItemList'
+import ItemList from '../Helpers/HelperComponents/ItemList'
 import { getUserAddressesFromApi } from '../../actions/User'
-import AddAddress from './AddAddress';
+import AddAddress from '../Helpers/HelperComponents/AddAddress';
 
 /**
  * 
@@ -13,7 +13,7 @@ import AddAddress from './AddAddress';
 
 function MyAddresses() {
     const dispatch = useDispatch();
-    const userId = useSelector(store => store.auth.userId)
+    const {userId, token} = useSelector(store => store.auth)
     const myAddresses = useSelector(store => store.user.addresses) 
 
     const INITIAL_STATE = {
@@ -27,7 +27,7 @@ function MyAddresses() {
     const [formData, setFormData] = useState(INITIAL_STATE)
 
     useEffect(function() {
-        dispatch(getUserAddressesFromApi(userId))
+        dispatch(getUserAddressesFromApi(token, userId))
     }, [dispatch])
 
     const handleChange = (e) => {
@@ -44,7 +44,7 @@ function MyAddresses() {
     }
 
     return (
-        <div id='myAddressesDiv' className='baseElement'>
+        <div id='myAddresses' className='baseElement'>
             <form onSubmit={addAddress}>
                 <AddAddress formData={formData} handleChange={handleChange} />
             </form>

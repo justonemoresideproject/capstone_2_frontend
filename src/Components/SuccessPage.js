@@ -6,7 +6,7 @@ import { NavLink, useParams } from 'react-router-dom'
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import { returnText } from './Helpers/TextFunctions'
+import { returnPrice, returnText } from './Helpers/TextFunctions'
 
 function SuccessPage() {
     const dispatch = useDispatch()
@@ -14,14 +14,14 @@ function SuccessPage() {
     const recentOrder = useSelector(state => state.customers.recentOrder)
     console.log(recentOrder)
     const products = useSelector(state => state.products)
-    const myProducts = recentOrder.items
+    const myProducts = recentOrder.products
 
     let total = 0
     
     return(
         <> 
         {recentOrder != null ?
-        <table className='receiptTable'>
+        <table id='receiptTable'>
             <thead>
                 <tr className='receiptTr'>
                     <td className='successTd' colSpan={2}>
@@ -94,7 +94,7 @@ function SuccessPage() {
                 )}
                 <tr id='grandTotalTr' className='tfootTr'>
                     <td id='grandTotalTd' colSpan={2}>
-                        Grand Total: {returnText(total)}
+                        Grand Total: {returnPrice(total)}
                     </td>
                 </tr>
             </tfoot>

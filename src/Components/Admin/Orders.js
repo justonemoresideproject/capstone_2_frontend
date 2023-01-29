@@ -1,9 +1,10 @@
 import { React, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { getAllOrders } from '../../actions/Admin'
+import { getAllOrders, updateOrder } from '../../actions/Admin'
 import Order from './Order'
-import ItemList from '../ItemList'
+import ItemList from '../Helpers/HelperComponents/ItemList'
+import { updateOrderToApi } from '../../actions/Order'
 
 /** Orders function displays all orders made on the application
  * 
@@ -11,9 +12,7 @@ import ItemList from '../ItemList'
  */
 
 function Orders() {
-    const orders = useSelector(store => store.admin.orders.orders)
-    const token = useSelector(store => store.auth.token)
-    const dispatch = useDispatch()
+    const orders = useSelector(store => store.admin.orders)
 
     if(orders == undefined || orders.message != undefined) {
         return (
@@ -22,7 +21,9 @@ function Orders() {
     }
 
     return (
-        <ItemList items={orders} />
+        <div className='baseElement'>
+            <ItemList items={orders} edit={true} action={updateOrderToApi}/>
+        </div>
     )
 }
 

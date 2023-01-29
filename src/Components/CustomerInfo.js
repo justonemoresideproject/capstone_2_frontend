@@ -88,6 +88,7 @@ function CustomerInfo() {
             setOpacity('errorFadeIn')
             return false
         }
+        return true
     }
 
     return (

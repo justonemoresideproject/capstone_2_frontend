@@ -55,3 +55,26 @@ export const randomProducts = (products, numProducts) => {
 export const removeDecimal = (number) => {
     return number * 100
 }
+
+export const compareObjects = (objectOne, objectTwo) => {
+    const objectOneKeys = Object.keys(objectOne)
+    const objectTwoKeys = Object.keys(objectTwo)
+
+    if(objectOneKeys.length !== objectTwoKeys.length) return false
+
+    objectOneKeys.forEach(key => {
+        if(objectOne[key] !== objectTwo[key]) return false
+    })
+
+    return true
+}
+
+export const createNewObject = (object) => {
+    const newObj = {}
+
+    Object.keys(object).forEach(key => {
+        newObj[key] = object[key]
+    })
+
+    return newObj
+}
