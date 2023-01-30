@@ -28,8 +28,11 @@
 }
 
 .modal {
-    width: 105%;
+    width: 100%;
+    max-width: 100vw;
     height: auto;
+
+    padding: .5% 1% .5% 1%;
 
     background-color: white;
     color: white;

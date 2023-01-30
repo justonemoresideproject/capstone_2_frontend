@@ -1,24 +1,23 @@
 import React from 'react'
-import { returnType, returnText } from '../TextFunctions'
 
-function EditInput({key, handleChange, value}) {
-    const type = returnType(key)
+import { returnType, returnText, returnSelect } from '../TextFunctions'
+import SelectComponent from './SelectComponent'
+
+function EditInput({name, handleChange, value}) {
+    const type = returnType(name)
+    console.log(`Edit Input type: ${type}`)
+    console.log(`Edit Input name: ${name}`)
 
     if(type === 'select') {
-        return (
-            <select>
-                <option>
-                    
-                </option>
-            </select>
-        )
+        console.log('SelectComponent Chosen')
+        return <SelectComponent name={name} handleChange={handleChange} value={value}/>
     }
 
     return (
         <input
             type={type}
             className='input'
-            name={key}
+            name={name}
             onChange={handleChange}
             value={value} />
     )

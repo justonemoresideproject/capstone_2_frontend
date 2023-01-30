@@ -13,7 +13,7 @@ function Item({item, edit, selectItem}) {
             })}
             {edit ? 
             <td>
-                <button class='button' onClick={() => selectItem(item)}>
+                <button className='button' onClick={() => selectItem(item)}>
                     Edit
                 </button>
             </td> : null}

@@ -248,7 +248,7 @@ function CustomerInfo() {
                                 <option value="apartment">
                                     Apartment
                                 </option>
-                                <option value="Business">
+                                <option value="business">
                                     Business
                                 </option>
                             </select>

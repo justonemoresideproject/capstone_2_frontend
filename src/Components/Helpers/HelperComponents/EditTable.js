@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { changeProfileFromApi } from '../../../actions/User';
 import { returnText } from '../TextFunctions';
 import { compareObjects, createNewObject } from '../AlgFunctions'
+import EditInput from './EditInput';
 
 const _ = require('lodash')
 
@@ -56,14 +57,16 @@ function EditTable({objectBasedInfo, action, showHeading=true}) {
                 <tbody>
                     <tr>
                         {Object.keys(objectBasedInfo).map((key, index) => {
+                            console.log(`Edit Table key: ${key}`)
                             return (
                                 <td key={`${key}-${index}`}>
-                                    <input 
+                                    <EditInput name={key} handleChange={handleChange} value={formData[key]} />
+                                    {/* <input 
                                         type='text'
                                         className='input'
                                         name={`${key}`}
                                         onChange={handleChange}
-                                        value={returnText(formData[key])} />
+                                        value={returnText(formData[key])} /> */}
                                 </td>
                             )
                         })}

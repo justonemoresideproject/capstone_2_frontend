@@ -48,7 +48,10 @@ export const isValidPhoneNumber = async (phoneNumber) => {
 }
 
 export const returnType = (key) => {
-    const lower = key.toLowerCase()
+    const lower = `${key}`.toLowerCase()
+
+    console.log(`returnType lower: ${lower}`)
+
     if(lower.includes('name')) {
         return 'text'
     }
@@ -68,27 +71,26 @@ export const returnType = (key) => {
     const keyToTypeObj = {
         "firstName": "text",
         "first_name": "text",
-        "last_name": "Last Name",
-        "user_id": "User ID",
-        "lastName": "Last Name",
-        "addressType": "Address Type",
-        "notDelivered": "Not Delivered",
-        "email": "Email",
-        "address": "Address",
-        "phone": "Phone",
-        "id": "ID",
-        "customer_id": "Customer ID",
-        "created_at": "Created At",
-        "delivered_status": "Delivered Status",
-        "address_id": "Address ID",
-        "city": "City",
-        "state": "State",
-        "country": "Country",
-        "street": "Street",
-        "address_type": "Address Type",
-        "postal_code": "Postal Code",
-        "shipping_address": "Shipping Address"
+        "last_name": "text",
+        "user_id": "number",
+        "lastName": "text",
+        "addressType": "select",
+        "email": "email",
+        "address": "text",
+        "phone": "number",
+        "id": "number",
+        "customer_id": "number",
+        "created_at": "date",
+        "delivered_status": "select",
+        "address_id": "number",
+        "city": "text",
+        "state": "text",
+        "country": "text",
+        "street": "text",
+        "address_type": "select",
+        "postal_code": "number",
+        "shipping_address": "text"
     }
-}
 
-export const returnSelectOptions = ()
+    return keyToTypeObj[key] || "text"
+}
