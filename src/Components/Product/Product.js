@@ -7,7 +7,7 @@ import ProductImage from './ProductImage'
 import ProductInfo from './ProductInfo'
 import { addItemToCart } from '../../actions/Cart'
 
-function Product({product, setEnlargedProduct}) {
+function Product({product, setSelectedProduct}) {
     const dispatch = useDispatch();
     const INITIAL_STATE = { 
         id : product.id,
@@ -50,7 +50,7 @@ function Product({product, setEnlargedProduct}) {
         }}>
             <ProductImage 
                 product={product} 
-                setEnlargedProduct={setEnlargedProduct}
+                setSelectedProduct={setSelectedProduct}
                 handleElementChange={handleElementChange} />
             {/* { dropDown ? <ProductInfo 
                 product={product} 

@@ -2,11 +2,16 @@ import React from 'react'
 import '../ComponentCss/ProductImage.css'
 
 
-function ProductImage({product, handleElementChange, setEnlargedProduct}) {
+function ProductImage({product, handleElementChange, setSelectedProduct}) {
+
+    const selectProduct = () => {
+        console.log('selectProduct')
+        setSelectedProduct(product)
+    }
 
     return (
         <div 
-            onClick={() => setEnlargedProduct(product)}
+            onClick={() => selectProduct()}
             className='productBackgroundImage'
             style={{
                 "backgroundImage" : `url(${product.imageSrc})`

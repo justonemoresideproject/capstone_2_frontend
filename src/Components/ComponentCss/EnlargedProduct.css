@@ -22,8 +22,8 @@
 }
 
 .enlargedProduct {
-    width: 80%;
-    height: 80%;
+    width: 80vw;
+    height: 70vh;
 
     align-self: center;
     align-content: center;
