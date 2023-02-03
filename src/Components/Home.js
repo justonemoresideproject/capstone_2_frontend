@@ -6,6 +6,8 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 
 import ProductList from './Product/ProductList'
+import ProductInfo from './Product/ProductInfo';
+import Modal from './Helpers/HelperComponents/Modal';
 import { randomProducts } from './Helpers/AlgFunctions'
 import { getProductsFromApi } from '../actions/Product'
 import EnlargedProduct from './Product/EnlargedProduct';
@@ -17,6 +19,8 @@ function Home() {
     const firstRandomProducts = randomProducts(products, 3)
 
     const [enlargedProduct, setEnlargedProduct] = useState(false)
+
+    const [selectedProduct, setSelectedProduct] = useState(null)
 
     useEffect(function() {
         dispatch(getProductsFromApi())
@@ -31,13 +35,22 @@ function Home() {
     return (
         <>
             <h1>Aglets Store</h1>
+            {selectedProduct !== null && <Modal childElement={
+                <ProductInfo 
+                    product={selectedProduct} 
+                    setState={selectedProduct}
+                />
+            }
+            setState={setSelectedProduct}
+            />
+        }
             {enlargedProduct && <EnlargedProduct product={enlargedProduct} setEnlargedProduct={setEnlargedProduct}/> }
             <div className='carouselWrapper'>
             <Carousel
                 showArrows={true}
                 >
                     <div 
-                        onClick={() => setEnlargedProduct(firstRandomProducts[1])}>
+                        onClick={() => setSelectedProduct(firstRandomProducts[1])}>
                         <img 
                             className='carouselImg'
                             src={firstRandomProducts[1].imageSrc} 
@@ -47,7 +60,7 @@ function Home() {
                         </p>
                     </div>
                     <div
-                        onClick={() => setEnlargedProduct(firstRandomProducts[2])}>
+                        onClick={() => setSelectedProduct(firstRandomProducts[2])}>
                         <img 
                             className='carouselImg'
                             src={firstRandomProducts[2].imageSrc} 
@@ -57,7 +70,7 @@ function Home() {
                         </p>
                     </div>
                     <div
-                        onClick={() => setEnlargedProduct(firstRandomProducts[3])}>
+                        onClick={() => setSelectedProduct(firstRandomProducts[3])}>
                         <img 
                             className='carouselImg'
                             src={firstRandomProducts[3].imageSrc} 

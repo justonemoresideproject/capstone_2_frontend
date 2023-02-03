@@ -13,13 +13,11 @@ import ProductInfo from './ProductInfo';
 function ProductList(products, columns=3, height=90, width=100) {
     const productTable = returnTable(products, columns)
 
-    const [enlargedProduct, setEnlargedProduct] = useState(false)
-
     const [selectedProduct, setSelectedProduct] = useState(null)
 
     return (
         <>
-        {selectedProduct !== null && <Modal childElement={
+            {selectedProduct !== null && <Modal childElement={
             <ProductInfo 
                 product={selectedProduct} 
                 setState={selectedProduct}
@@ -28,7 +26,6 @@ function ProductList(products, columns=3, height=90, width=100) {
             setState={setSelectedProduct}
             />
         }
-        {enlargedProduct && <EnlargedProduct product={enlargedProduct} setEnlargedProduct={setEnlargedProduct}/> }
             <table className='productTable' style={{
                 "width": `${width}`
             }}>
