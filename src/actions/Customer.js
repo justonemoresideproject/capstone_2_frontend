@@ -1,6 +1,7 @@
 import { ADD_CUSTOMER, ADD_RECENT_ORDER, SET_CUSTOMER, SET_CUSTOMERS, REMOVE_CUSTOMER, SET_SECRET } from './types'
 
-const { create, remove, get, all, update } = require('../API/CustomerApi')
+import CustomerApi from '../API/CustomerApi'
+const { create, remove, get, all, update } = CustomerApi
 
 function getCustomerFromApi(id) {
     return async function(dispatch) {
@@ -30,6 +31,7 @@ function addCustomerToApi(customerInfo) {
 
 function updateCustomerToApi(token, customerInfo) {
     return async function(dispatch) {
+        console.log(customerInfo)
         const res = await update(token, customerInfo)
 
         dispatch(setCustomer(res.customer))

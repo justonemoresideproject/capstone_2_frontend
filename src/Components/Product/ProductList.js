@@ -20,7 +20,7 @@ function ProductList(products, columns=3, height=90, width=100) {
             {selectedProduct !== null && <Modal childElement={
             <ProductInfo 
                 product={selectedProduct} 
-                setState={selectedProduct}
+                setSelectedProduct={setSelectedProduct}
             />
             }
             setState={setSelectedProduct}

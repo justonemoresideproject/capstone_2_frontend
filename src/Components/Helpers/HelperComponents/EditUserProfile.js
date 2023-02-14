@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react'
+
+import '../../ComponentCss/Profile.css'
+
 import { useDispatch, useSelector } from 'react-redux'
 import { changeProfileFromApi } from '../../../actions/User'
 
@@ -11,6 +14,7 @@ function EditUserProfile({profile, token}) {
     const INITIAL_STATE = profile
 
     const [formData, setFormData] = useState(INITIAL_STATE)
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -26,11 +30,11 @@ function EditUserProfile({profile, token}) {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className='editUserProfileForm' onSubmit={handleSubmit}>
             <table>
                 <tbody>
                     <tr>
-                        <td>
+                        <td colSpan={2}>
                             <label
                                 htmlFor='username'
                                 className='label'>
@@ -39,9 +43,10 @@ function EditUserProfile({profile, token}) {
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td colSpan={2}>
                             <input 
                                 type="text"
+                                className='input'
                                 name='username'
                                 onChange={handleChange}
                                 value={formData.username} />
@@ -68,6 +73,7 @@ function EditUserProfile({profile, token}) {
                             <input
                                 type='text'
                                 name='firstName'
+                                className='input'
                                 onChange={handleChange}
                                 value={formData.first_name} />
                         </td>
@@ -75,6 +81,7 @@ function EditUserProfile({profile, token}) {
                             <input
                                 type='text'
                                 name='firstName'
+                                className='input'
                                 onChange={handleChange}
                                 value={formData.last_name} />
                         </td>
@@ -100,6 +107,7 @@ function EditUserProfile({profile, token}) {
                             <input
                                 type='number'
                                 name='phone'
+                                className='input'
                                 onChange={handleChange}
                                 value={formData.phone} />
                         </td>
@@ -107,12 +115,13 @@ function EditUserProfile({profile, token}) {
                             <input
                                 type='email'
                                 name='email'
+                                className='input'
                                 onChange={handleChange}
                                 value={formData.email} />
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td colSpan={2}>
                             <button className='button'>
                                 Change Profile
                             </button>

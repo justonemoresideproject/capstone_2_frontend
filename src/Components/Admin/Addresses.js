@@ -13,8 +13,6 @@ function Addresses() {
         dispatch(getAddressesFromApi)
     }, [addresses])
 
-    console.log(addresses)
-
     if(addresses == undefined) {
         return (
             <h1>

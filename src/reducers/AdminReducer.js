@@ -7,8 +7,12 @@ function admin(state = INITIAL_STATE, action) {
                 "customers": action.payload }
 
         case 'SET_CUSTOMER':
-            return { ...state,
-                "customers": state.customers[action.payload.id] = [action.payload]}
+            return { ...state, 
+                "customers": {
+                    ...state.customers,
+                    [action.payload.id] : action.payload
+                }
+            }
         
         case 'SET_ORDERS':
             return { ...state,

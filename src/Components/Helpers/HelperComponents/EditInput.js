@@ -5,8 +5,6 @@ import SelectComponent from './SelectComponent'
 
 function EditInput({name, handleChange, value}) {
     const type = returnType(name)
-    console.log(`Edit Input type: ${type}`)
-    console.log(`Edit Input name: ${name}`)
 
     if(type === 'select') {
         console.log('SelectComponent Chosen')

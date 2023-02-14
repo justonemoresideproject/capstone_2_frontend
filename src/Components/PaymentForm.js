@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { addRecentOrder, setCustomer } from '../actions/Customer'
 import { sendOrderToApi } from '../actions/Order'
 import { resetCart } from '../actions/Cart'
+import Modal from './Helpers/HelperComponents/Modal';
 
 const { TOKEN, BASE_URL } = require('../API/apiConfig.js')
 
@@ -23,7 +24,7 @@ function PaymentForm() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const [error, setError] = useState('')
+    const [error, setError] = useState(null)
 
     const cartKeys = Object.keys(store.cart)
     let total = 0
@@ -56,7 +57,7 @@ function PaymentForm() {
         }).then(r => r.json());
 
         if(backendError) {
-            console.log(backendError)
+            setError(backendError.message)
             return;
         }
 
@@ -70,7 +71,7 @@ function PaymentForm() {
         )
 
         if(stripeError) {
-            console.log(stripeError)
+            setError(stripeError.message)
             return;
         }
         
@@ -83,8 +84,6 @@ function PaymentForm() {
             "customerInfo": store.customers,
             "products": cartItems
         }
-
-        console.log(order)
 
         dispatch(sendOrderToApi(order))
         dispatch(addRecentOrder(order))
@@ -110,7 +109,7 @@ function PaymentForm() {
         // }).then(function() {
         //     navigate(`/successPage`)
         // }).catch(function(res) {
-        //     console.log('FAILED...')
+        //     ('FAILED...')
         //     setError(`${res}`)
         // })
     }
@@ -134,6 +133,8 @@ function PaymentForm() {
       };
 
     return (
+        <>
+        {error !== null && <Modal title={error} setState={setError} backgroundColor={'red'}/>}
             <form 
                 id="payment-form" 
                 onSubmit={handleSubmit}>
@@ -158,14 +159,10 @@ function PaymentForm() {
                             </button>
                         </td>
                     </tr>
-                    <tr>
-                        <td>
-                            <div>{error}</div>
-                        </td>
-                    </tr>
                     </tbody>
                 </table>
             </form>
+        </>
     )
 }
 

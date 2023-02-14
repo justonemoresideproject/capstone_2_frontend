@@ -14,7 +14,7 @@ import { updateOrderToApi } from '../../actions/Order'
 function Orders() {
     const orders = useSelector(store => store.admin.orders)
 
-    if(orders == undefined || orders.message != undefined) {
+    if(orders == undefined || orders.message != undefined || orders.length === 0) {
         return (
             <h1>Looks like you don't have any orders yet...</h1>
         )

@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import EditTable from './EditTable'
 
+import { returnText } from '../TextFunctions'
+
 function Item({item, edit, selectItem}) {
     const itemKeys = Object.keys(item)
 
@@ -8,7 +10,7 @@ function Item({item, edit, selectItem}) {
         <tr>
             {itemKeys.map((key, index) => {
                 return (
-                    <td key={`${key}-${index}`}>{item[key]}</td>
+                    <td key={`${key}-${index}`}>{returnText(item[key])}</td>
                 )
             })}
             {edit ? 

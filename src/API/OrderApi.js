@@ -13,6 +13,15 @@ class OrderApi {
         return res
     }
 
+    static async update(token, orderInfo) {
+        const id = orderInfo.id
+        delete(orderInfo.id)
+        delete(orderInfo.createdAt)
+        const res = CommonApi.request(`orders/${id}`, orderInfo, 'patch', token)
+
+        return res
+    }
+
     static async all(token) {
         const res = CommonApi.request('orders/', {}, "get", token)
 

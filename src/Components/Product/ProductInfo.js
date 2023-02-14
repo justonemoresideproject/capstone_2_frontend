@@ -15,40 +15,45 @@ function ProductInfo({product, setSelectedProduct}) {
     const INITIAL_STATE = {
         id : product.id,
         quantity : quantity
-    };
+    }
 
     const [formData, setFormData] = useState(INITIAL_STATE)
+
+    const closeModal = () => {
+        setSelectedProduct(null)
+    }
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(formData => ({
             ...formData,
             [name]: value
-        })) 
-    } 
+        }))
+    }
 
     const handleSubmit = (e) => {
-        e.preventDefault()
+        if(e.stopPropogation && e !== undefined) e.stopPropogation()
+        if(e.preventDefault && e !== undefined) e.preventDefault()
         dispatch(addItemToCart(formData))
-        setSelectedProduct(null)
+        closeModal()
     }
 
     return (
         <table
-            className='enlargedProduct'
+            className='productInfoContainer'
             style={{
                 "backgroundImage" : `url(${product.imageSrc})`
             }}>
                 <thead>
                     <tr>
-                        <th className='enlargedNameContainer'>
-                            <h3 className='enlargedName'>
+                        <th className='productNameContainer'>
+                            <h3 className='productName'>
                                 {product.name}
                             </h3>
                         </th>
                     </tr>
                 </thead>
-                <tbody className='enlargedTbody'>
+                <tbody className='productInfoTbody'>
                     <tr className='containerOfContainer'>
                         <td className='cartFormContainer'>
                             <form
@@ -62,6 +67,7 @@ function ProductInfo({product, setSelectedProduct}) {
                                     Number of Items                    
                                 </div>
                                 <button 
+                                    type='button'
                                     style={{
                                         "width": "4vw",
                                         "height": "3vh"
@@ -75,11 +81,12 @@ function ProductInfo({product, setSelectedProduct}) {
                                 <input 
                                     type='number' 
                                     className='input'
-                                    id='enlargedInput'
+                                    id='productInfoInput'
                                     name='quantity'
                                     onChange={handleChange}
                                     value={+formData.quantity} />
                                 <button 
+                                    type='button'
                                     style={{
                                         "width": "4vw",
                                         "height": "3vh"
@@ -92,9 +99,10 @@ function ProductInfo({product, setSelectedProduct}) {
                                 </button>
                                 <br />                    
                                 <button 
+                                    type='submit'
                                     id='addToCartButton'
                                     className='button'
-                                    onClick={handleSubmit}>
+                                    onClick={() => handleSubmit()}>
                                     Add to Cart
                                 </button>
                                 <div>

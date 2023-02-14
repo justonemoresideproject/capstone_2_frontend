@@ -19,7 +19,7 @@
 
     z-index: 200;
 
-    width:auto;
+    width: auto;
 
     top: 50%;
     left: 50%;
@@ -34,7 +34,6 @@
 
     padding: 5px 10px 5px 10px;
 
-    background-color: white;
     color: white;
     
     z-index: 0;

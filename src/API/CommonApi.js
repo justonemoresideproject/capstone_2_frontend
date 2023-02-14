@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+import { returnCorrectData } from '../Components/Helpers/TextFunctions.js';
+
 const { TOKEN, BASE_URL } = require('./apiConfig.js')
 
 class CommonApi {

@@ -18,8 +18,6 @@ function CheckOut() {
     const cartItems = store.cart;
     const cartKeys = [];
 
-    console.log(products);
-
     const proceedToPayment = () => {
         navigate('/customerInfo')
     }

@@ -30,7 +30,7 @@ function SuccessPage() {
                 </tr>
                 <tr id='bottomTheadTr' className='receiptTr'>
                     <td className='receiptTd' colSpan={2}>
-                        Agletz Receipt
+                        Aglets Receipt
                     </td>
                 </tr>
             </thead>

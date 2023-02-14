@@ -9,7 +9,7 @@ import ReactDOM from 'react-dom'
  * @param {*} param0 
  * @returns 
  */
-function Modal({childElement=null, title=null, setState}) {
+function Modal({childElement=null, title=null, setState, backgroundColor='white'}) {
     const root = document.getElementById('App-header')
 
     const handleClose = (e) => {
@@ -24,7 +24,7 @@ function Modal({childElement=null, title=null, setState}) {
                 Close
             </button>
             <div className='popupCenter'>
-                <div className='modal'>
+                <div className={`modal ${backgroundColor}`}>
                     <div className='modalHeader'>
                         {title === null ? null : 
                             <h5 className='modalHeading'>

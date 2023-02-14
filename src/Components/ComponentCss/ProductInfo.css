@@ -1,15 +1,19 @@
 .productInfoContainer {
     width: 95%;
-    height: 95%;
-    position: absolute;
+    height: 80vh;
+
+    position: relative;
+
+    align-self: center;
+    align-content: center;
+    text-align: center;
     
-    display: block;
+    display: flexbox;
     margin: auto;
 
-    left: 0px;
-    right: 0px;
-    top: 0px;
-    bottom: 0px;
+    background-size: contain;
+    background-position: center;
+    background-repeat:no-repeat;
 
     background-color: rgba(163, 117, 68, 0.563);
 }
@@ -25,9 +29,62 @@
 }
 
 .productName {
-    padding: 0px;
-    margin: 0px;
+    width: 80%;
+    text-size-adjust: 40%;
+    margin: auto;
+
+    top: 0%;
+
+    background-color: rgba(136, 136, 136, 0.533);
 }
+
+.productNameContainer {
+    align-content: center;
+    width:max-content;
+}
+
+.productInfoTbody {
+    display:flexbox;
+    justify-content: center;
+    align-content: bottom;
+}
+
+.containerOfContainer {
+    display: flexbox;
+    flex-direction: column-reverse;
+    align-items: bottom;
+    justify-content: center;
+    margin-bottom: 0%;
+    height: 100%;
+}
+
+.cartFormContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: center;
+    height: 100%;
+}
+
+.addToCartForm {
+    align-self: flex-end;
+    width: 75%;
+    background-color: rgba(136, 136, 136, 0.533);
+}
+
+#addToCartButton {
+    width: 40%;
+}
+
+#productInfoInput {
+    width: 20%;
+    height: 50%;
+    font-size: 1.1rem;
+
+    text-align: center;
+}
+
+
 
 .productInfo {
     position: relative;

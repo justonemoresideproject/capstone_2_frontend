@@ -50,7 +50,7 @@ export const isValidPhoneNumber = async (phoneNumber) => {
 export const returnType = (key) => {
     const lower = `${key}`.toLowerCase()
 
-    console.log(`returnType lower: ${lower}`)
+    // console.log(`returnType lower: ${lower}`)
 
     if(lower.includes('name')) {
         return 'text'
@@ -93,4 +93,90 @@ export const returnType = (key) => {
     }
 
     return keyToTypeObj[key] || "text"
+}
+
+export const returnCorrectData = (formData) => {
+    const formKeys = Object.keys(formData)
+
+    const keyToTypeObj = {
+        "firstName": "string",
+        "first_name": "string",
+        "last_name": "string",
+        "user_id": "number",
+        "lastName": "string",
+        "addressType": "string",
+        "email": "string",
+        "address": "string",
+        "phone": "number",
+        "id": "number",
+        "customer_id": "number",
+        "created_at": "string",
+        "delivered_status": "string",
+        "address_id": "number",
+        "city": "string",
+        "state": "string",
+        "country": "string",
+        "street": "string",
+        "address_type": "string",
+        "postal_code": "number",
+        "shipping_address": "string",
+        "addressId": "number",
+        "address_id": "number"
+    }
+
+    // key => determine what key data should be => convert form data
+
+    formKeys.forEach(key => {
+        // key to type object, returns type, translates key data to type
+
+        const type = keyToTypeObj[key]
+        switch(type) {
+            case "string":
+                formData[key] = String(formData[key])
+
+            case "number":
+                formData[key] = Number(formData[key])
+        }
+    })
+
+    console.log(formData)
+    return formData
+}
+
+export const returnCorrectValue = (name, value) => {
+    const keyToTypeObj = {
+        "firstName": "string",
+        "first_name": "string",
+        "last_name": "string",
+        "user_id": "number",
+        "lastName": "string",
+        "addressType": "string",
+        "email": "string",
+        "address": "string",
+        "phone": "number",
+        "id": "number",
+        "customer_id": "number",
+        "created_at": "string",
+        "delivered_status": "string",
+        "address_id": "number",
+        "city": "string",
+        "state": "string",
+        "country": "string",
+        "street": "string",
+        "address_type": "string",
+        "postal_code": "number",
+        "shipping_address": "string",
+        "addressId": "number",
+        "address_id": "number"
+    }
+
+    const type = keyToTypeObj[name]
+
+    switch(type) {
+        case "string":
+            return String(value)
+
+        case "number":
+            return Number(value)
+    }
 }

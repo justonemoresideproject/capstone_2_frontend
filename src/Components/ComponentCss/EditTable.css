@@ -4,7 +4,7 @@
     margin-top: 3%;
     margin-bottom: 3%;
     
-    width: 105%;
+    width: 100%;
     max-width: 100vw;
 
     display: block;
@@ -12,44 +12,27 @@
 
 #editTableForm>table {
     table-layout: fixed;
-    /* border-collapse: collapse; */
+    border-collapse: separate;
     box-sizing: border-box;
 }
 
 #editTableForm>table>tbody>tr>td>input[type="number"] {
-    width: 9ch;
+    min-width: 9ch;
+    width: 30%;
 }
 
 #editTableForm>table>tbody>tr>td>input[type="text"] {
-    width: 18ch;
+    min-width: 18ch;
 }
 
 #editTableForm>table>tbody>tr>td>select {
-    width: 16ch;
+    min-width: 16ch;
 }
 
-/* #editTableForm>table>thead>tr>th {
-    word-wrap: break-word;
-} */
-
-/* #editTableForm>table>tbody {
-    display:flexbox;
+#editTableForm>table>tbody>tr>td>input[type="date"] {
+    min-width: 16ch;
 }
 
-#editTableForm>table>tbody>tr>td {
-    word-wrap: break-word;
-    box-sizing: border-box;
+#editTableForm>table>tbody>tr {
+    align-content: space-between;
 }
-
-#editTableForm>table>tbody>tr>td>input {
-    margin: 0px;
-    padding: 0px;
-}
-
-
-#editTableForm>table>tbody>tr>td>select {
-    width: 100%;
-    font-size: 1.4rem;
-
-
-} */

@@ -20,7 +20,10 @@ class CustomerApi {
     }
 
     static async update(token, customerInfo) {
-        const res = CommonApi.request('customers/', customerInfo, 'patch', token)
+        const id = customerInfo.id
+        delete(customerInfo.id)
+        delete(customerInfo.createdAt)
+        const res = CommonApi.request(`customers/${id}`, customerInfo, 'patch', token)
 
         return res
     }

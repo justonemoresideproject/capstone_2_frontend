@@ -1,6 +1,6 @@
 import React from 'react'
 
-import '../ComponentCss/Navbar2.css'
+import '../ComponentCss/Navbar.css'
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
@@ -14,6 +14,7 @@ function NavigationBar() {
     const dispatch = useDispatch()
     const store = useSelector(store => store)
     const cartKeys = Object.keys(store.cart)
+
     console.log(store)
 
     if(store.cart) {

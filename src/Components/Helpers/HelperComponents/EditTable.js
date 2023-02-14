@@ -5,6 +5,7 @@ import '../../ComponentCss/EditTable.css'
 import { useDispatch, useSelector } from 'react-redux';
 
 import { changeProfileFromApi } from '../../../actions/User';
+import { updateCustomerToApi } from '../../../actions/Customer';
 import { returnText } from '../TextFunctions';
 import { compareObjects, createNewObject } from '../AlgFunctions'
 import EditInput from './EditInput';
@@ -13,12 +14,13 @@ const _ = require('lodash')
 
 function EditTable({objectBasedInfo, action, showHeading=true}) {
     const dispatch = useDispatch()
-    const token = useSelector(store => store.auth)
+    const token = useSelector(store => store.auth.token)
 
-    const INITIAL_STATE = createNewObject(objectBasedInfo)
+    // const INITIAL_STATE = createNewObject(objectBasedInfo)
 
-    const [formData, setFormData] = useState(INITIAL_STATE)
+    const [formData, setFormData] = useState(objectBasedInfo)
     const [buttonClass, setButtonClass] = useState('button hide')
+    console.log(formData)
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -26,15 +28,16 @@ function EditTable({objectBasedInfo, action, showHeading=true}) {
             ...formData,
             [name]: value
         }))
-        _.isEqual(formData, INITIAL_STATE) ? setButtonClass('button hide') : setButtonClass('button show')
+        _.isEqual(formData, objectBasedInfo) ? setButtonClass('button hide') : setButtonClass('button show')
         e.cancelBubble = true
         if(e.stopPropogation) e.stopPropogation()
     }
 
     const handleSubmit = (e) => {
+        console.log(formData)
         e.preventDefault();
-        if(_.isEqual(formData, INITIAL_STATE)) return 
-        dispatch(action(formData))
+        if(_.isEqual(formData, objectBasedInfo)) return 
+        dispatch(action(token, formData))
     }
 
     return (
@@ -57,7 +60,7 @@ function EditTable({objectBasedInfo, action, showHeading=true}) {
                 <tbody>
                     <tr>
                         {Object.keys(objectBasedInfo).map((key, index) => {
-                            console.log(`Edit Table key: ${key}`)
+                            // console.log(`Edit Table key: ${key}`)
                             return (
                                 <td key={`${key}-${index}`}>
                                     <EditInput name={key} handleChange={handleChange} value={formData[key]} />

@@ -18,6 +18,8 @@ function Home() {
     const products = useSelector(state => state.products)
     const firstRandomProducts = randomProducts(products, 3)
 
+    console.log(firstRandomProducts)
+
     const [enlargedProduct, setEnlargedProduct] = useState(false)
 
     const [selectedProduct, setSelectedProduct] = useState(null)
@@ -38,13 +40,13 @@ function Home() {
             {selectedProduct !== null && <Modal childElement={
                 <ProductInfo 
                     product={selectedProduct} 
-                    setState={selectedProduct}
+                    setSelectedProduct={setSelectedProduct}
                 />
             }
             setState={setSelectedProduct}
             />
         }
-            {enlargedProduct && <EnlargedProduct product={enlargedProduct} setEnlargedProduct={setEnlargedProduct}/> }
+            {/* {enlargedProduct && <EnlargedProduct product={enlargedProduct} setEnlargedProduct={setEnlargedProduct}/> } */}
             <div className='carouselWrapper'>
             <Carousel
                 showArrows={true}

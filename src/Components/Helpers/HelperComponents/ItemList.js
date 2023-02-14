@@ -8,7 +8,7 @@ import { returnText } from '../TextFunctions'
 import Item from './Item'
 
 function ItemList({items, edit=false, action}) {
-    const headerKeys = Object.keys(items[0])
+    const itemKeys = Object.keys(items)
     const [selectedItem, setSelectedItem] = useState(null)
 
     const selectItem = (item) => {
@@ -24,7 +24,7 @@ function ItemList({items, edit=false, action}) {
             <table className='ItemList'>
                 <thead>
                     <tr>
-                        {headerKeys.map((key, index) => {
+                        {Object.keys(items[itemKeys[0]]).map((key, index) => {
                             return (
                                 <th key={`${index}-${key}`}>{returnText(key)}</th>
                             )
@@ -32,10 +32,10 @@ function ItemList({items, edit=false, action}) {
                     </tr>
                 </thead>
                 <tbody>
-                    {items.map((item, index) => {
+                    {itemKeys.map((key, index) => {
                         return (
                             <Item 
-                                item={item} 
+                                item={items[key]} 
                                 key={`${index}-${items.id}`}
                                 edit={edit}
                                 selectItem={selectItem}
