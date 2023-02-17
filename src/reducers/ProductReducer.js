@@ -19,7 +19,7 @@ function products(state = INITIAL_STATE, action) {
             console.log(action.payload)
             return {
                 ...state,
-                "queryProducts": [action.payload]
+                "queryProducts": action.payload
             }
         
         case 'REMOVE_PRODUCT':

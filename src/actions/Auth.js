@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { SET_TOKEN, SET_AUTH_INFO, RESET_AUTH, RESET_TOKEN, SET_ERROR, RESET_ERROR } from './types'
+import { SET_TOKEN, SET_AUTH_INFO, RESET_AUTH, RESET_ADMIN, LOGOUT, RESET_USER, RESET_TOKEN, SET_ERROR, RESET_ERROR } from './types'
 import { BASE_URL } from '../API/apiConfig'
 
 import AuthApi from '../API/AuthApi'
@@ -63,6 +63,20 @@ function register(userInfo) {
     }
 }
 
+// function logout(dispatch) {
+//     console.log('Loggin out...')
+//     return dispatch => {
+//         console.log('Still loggin out...')
+//         dispatch(resetAuth())
+//         dispatch(resetAdmin())
+//         dispatch(resetUser())
+//     }
+// }
+
+function logout() {
+    return { type: LOGOUT }
+}
+
 function resetError() {
     return { type: RESET_ERROR }
 }
@@ -84,6 +98,14 @@ function resetAuth() {
     return { type: RESET_AUTH }
 }
 
+function resetAdmin() {
+    return { type: RESET_ADMIN }
+}
+
+function resetUser() {
+    return { type: RESET_USER }
+}
+
 function setAuthInfo(authInfo) {
     return { type: SET_AUTH_INFO, payload: authInfo}
 }
@@ -96,4 +118,4 @@ function setAuthInfo(authInfo) {
 //     return { type: LOGGIN_FAILURE, payload: status }
 // }
 
-export { login, register, setAuthInfo, setToken, resetToken, setError, resetError }
+export { login, register, logout, setAuthInfo, setToken, resetToken, setError, resetError }

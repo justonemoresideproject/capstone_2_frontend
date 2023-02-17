@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react'
 
 import '../../ComponentCss/Modal.css'
 
-import ReactDOM from 'react-dom'
-
 /**
  * Dynamic Modal allows an element, title, and setState function to be passed
  * @param {*} param0 

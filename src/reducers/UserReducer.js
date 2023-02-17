@@ -29,6 +29,9 @@ function user(state = INITIAL_STATE, action) {
 
         case 'RESET_PROFILE':
             return INITIAL_STATE
+
+        case 'LOGOUT':
+            return INITIAL_STATE
         
         default:
             return state;

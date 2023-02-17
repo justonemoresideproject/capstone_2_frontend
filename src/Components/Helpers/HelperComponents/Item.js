@@ -3,12 +3,11 @@ import EditTable from './EditTable'
 
 import { returnText } from '../TextFunctions'
 
-function Item({item, edit, selectItem}) {
-    const itemKeys = Object.keys(item)
+function Item({headers, item, edit, selectItem}) {
 
     return (
         <tr>
-            {itemKeys.map((key, index) => {
+            {headers.map((key, index) => {
                 return (
                     <td key={`${key}-${index}`}>{returnText(item[key])}</td>
                 )

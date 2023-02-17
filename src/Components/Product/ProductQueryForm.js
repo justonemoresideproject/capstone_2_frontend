@@ -3,7 +3,7 @@ import '../ComponentCss/ProductQueryForm.css'
 import React, {useState, useEffect} from 'react'
 import { useDispatch } from 'react-redux'
 
-import { setQueryProducts } from '../../actions/Product'
+import { sendQueryFromApi } from '../../actions/Product'
 import ProductApi from '../../API/ProductApi'
 import { findProducts } from '../Helpers/FindProducts'
 
@@ -28,10 +28,11 @@ function ProductQueryForm(products) {
     }
 
     const handleSubmit = (e) => {
-        e.preventDefault();
+        if(e !== undefined && e.preventDefault !== undefined) { 
+            e.preventDefault() }
         setIsLoading(true);
         const matchingProducts = findProducts(products, formData.price, formData.name)
-        dispatch(matchingProducts)
+        dispatch(sendQueryFromApi(matchingProducts))
     }
 
     return (

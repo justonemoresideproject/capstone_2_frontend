@@ -5,7 +5,7 @@ import '../ComponentCss/Navbar.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { NavItems, UserNavItems, AdminNavItems, AuthNavItems } from './NavItems'
-import { resetToken } from '../../actions/Auth'
+import { logout } from '../../actions/Auth'
 import { resetUser } from '../../actions/User'
 import NavItem from './NavItem'
 
@@ -23,9 +23,9 @@ function NavigationBar() {
         })
     }
 
-    function logout() {
-        dispatch(resetToken)
-        dispatch(resetUser)
+    const handleLogout = () => {
+        dispatch(logout())
+        navigate('/')
     }
     
     return (
@@ -56,7 +56,7 @@ function NavigationBar() {
                         )
                     })}
                     <li>
-                        <button className="navButton" onClick={() => logout()}>Logout</button>
+                        <button className="navButton" onClick={() => dispatch(logout())}>Logout</button>
                     </li>
                 
                 </>    

@@ -31,6 +31,9 @@ function auth(state = INITIAL_STATE, action) {
             console.log('RESET_TOKEN AUTH_REDUCER')
             return INITIAL_STATE
 
+        case 'LOGOUT':
+            return INITIAL_STATE
+
         default:
             return state;
     }

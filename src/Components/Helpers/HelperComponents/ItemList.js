@@ -9,11 +9,12 @@ import Item from './Item'
 
 function ItemList({items, edit=false, action}) {
     const itemKeys = Object.keys(items)
+    const headers = Object.keys(items[itemKeys[0]])
+    
     const [selectedItem, setSelectedItem] = useState(null)
 
     const selectItem = (item) => {
         setSelectedItem(item)
-        console.log('selected')
     }
 
     return (
@@ -24,7 +25,7 @@ function ItemList({items, edit=false, action}) {
             <table className='ItemList'>
                 <thead>
                     <tr>
-                        {Object.keys(items[itemKeys[0]]).map((key, index) => {
+                        {headers.map((key, index) => {
                             return (
                                 <th key={`${index}-${key}`}>{returnText(key)}</th>
                             )
@@ -35,6 +36,7 @@ function ItemList({items, edit=false, action}) {
                     {itemKeys.map((key, index) => {
                         return (
                             <Item 
+                                headers={headers}
                                 item={items[key]} 
                                 key={`${index}-${items.id}`}
                                 edit={edit}

@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { changeProfileFromApi } from '../../../actions/User';
 import { updateCustomerToApi } from '../../../actions/Customer';
-import { returnText } from '../TextFunctions';
+import { returnText, returnFormValue } from '../TextFunctions';
 import { compareObjects, createNewObject } from '../AlgFunctions'
 import EditInput from './EditInput';
 
@@ -23,10 +23,10 @@ function EditTable({objectBasedInfo, action, showHeading=true}) {
     console.log(formData)
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        const { name, value, type } = e.target;
         setFormData(formData => ({
             ...formData,
-            [name]: value
+            [name]: returnFormValue(value, type)
         }))
         _.isEqual(formData, objectBasedInfo) ? setButtonClass('button hide') : setButtonClass('button show')
         e.cancelBubble = true

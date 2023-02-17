@@ -180,3 +180,8 @@ export const returnCorrectValue = (name, value) => {
             return Number(value)
     }
 }
+
+export const returnFormValue = (value, type) => {
+    if(type === "number" && value !== undefined && value !== null) return +value
+    return value
+}

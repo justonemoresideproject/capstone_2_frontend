@@ -72,7 +72,7 @@ function Register() {
                             <td className='authInputContainer'>
                                 <input 
                                     type='text' 
-                                    className='authInput'
+                                    className='input'
                                     name='username' 
                                     onChange={handleChange} 
                                     value={formData.username} 

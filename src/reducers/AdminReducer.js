@@ -19,8 +19,12 @@ function admin(state = INITIAL_STATE, action) {
                 "orders": action.payload }
 
         case 'SET_ORDER':
+            console.log(action.payload)
             return { ...state,
-                "orders": state.orders[action.payload.id] = [action.payload] }
+                "orders": { ...state.orders, 
+                    [action.payload.id] : action.payload
+                }
+            }
 
         case 'SET_ADDRESSES':
             return { ...state,
@@ -36,7 +40,10 @@ function admin(state = INITIAL_STATE, action) {
                 "orders": action.payload.orders,
                 "addresses": action.payload.addresses }
 
-        case 'RESET':
+        case 'RESET_ADMIN':
+            return INITIAL_STATE
+
+        case 'LOGOUT':
             return INITIAL_STATE
 
         default:

@@ -27,7 +27,8 @@ function updateOrderToApi(token, orderInfo) {
     return async function(dispatch) {
         const res = await OrderApi.update(token, orderInfo)
 
-        dispatch(setOrder(res.order))
+        console.log(res)
+        dispatch(setOrder(res.updatedOrder))
     }
 }
 

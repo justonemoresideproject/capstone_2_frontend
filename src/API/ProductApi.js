@@ -8,7 +8,7 @@ class ProductApi {
     }
 
     static async query(searchFilters) {
-      const res = CommonApi.request(`products/query`, searchFilters, 'post')
+      const res = CommonApi.request(`products/`, searchFilters, 'get')
 
       return res
     }
