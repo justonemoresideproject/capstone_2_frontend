@@ -34,12 +34,7 @@ function CheckOut() {
         <>
         <h1>Checkout</h1>
         {cartKeys.length > 0 ?
-            <table 
-                style={{
-                    "width": "100vw",
-                    "height": "100%"
-                }}
-                className='checkoutTable'>
+            <table className='checkoutTable'>
                 <thead>
                     <tr>
                         <td>

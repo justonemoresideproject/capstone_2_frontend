@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { changeProfileFromApi } from '../../../actions/User';
 import { updateCustomerToApi } from '../../../actions/Customer';
 import { returnText, returnFormValue } from '../TextFunctions';
-import { compareObjects, createNewObject } from '../AlgFunctions'
+import { compareObjects, createNewObject, isObject } from '../AlgFunctions'
 import EditInput from './EditInput';
 
 const _ = require('lodash')
@@ -34,7 +34,6 @@ function EditTable({objectBasedInfo, action, showHeading=true}) {
     }
 
     const handleSubmit = (e) => {
-        console.log(formData)
         e.preventDefault();
         if(_.isEqual(formData, objectBasedInfo)) return 
         dispatch(action(token, formData))
@@ -58,18 +57,39 @@ function EditTable({objectBasedInfo, action, showHeading=true}) {
                 null
                 }
                 <tbody>
-                    <tr>
+                    {Object.keys(objectBasedInfo).map((key, index) => {
+                        // return isObject(objectBasedInfo[key]) ? <tr>
+                        //     {Object.keys(objectBasedInfo[key]).map((keyTwo, indexTwo) => {
+                        //         <td key={`${index} - ${indexTwo}`}>
+                        //             <EditInput name={keyTwo} handleChange={handleChange} value={formData[key]} />
+                        //         </td>
+                        //     })}
+                        //     <td>
+                        //         <button
+                        //             className={`${buttonClass}`}>
+                        //                 Submit
+                        //         </button>
+                        //     </td>
+                        // </tr> : (
+                            return isObject(objectBasedInfo[key]) ? <EditTable objectBasedInfo={objectBasedInfo[key]} action={action} showHeading={true} /> 
+                            :
+                            <tr>
+                                <td key={`${key}-${index}`}>
+                                    <EditInput name={key} handleChange={handleChange} value={formData[key]} />
+                                </td>
+                                <td>
+                                    <button
+                                        className={`${buttonClass}`}>
+                                            Submit
+                                    </button>
+                                </td>
+                            </tr>
+                        })}
+                    {/* <tr>
                         {Object.keys(objectBasedInfo).map((key, index) => {
-                            // console.log(`Edit Table key: ${key}`)
                             return (
                                 <td key={`${key}-${index}`}>
                                     <EditInput name={key} handleChange={handleChange} value={formData[key]} />
-                                    {/* <input 
-                                        type='text'
-                                        className='input'
-                                        name={`${key}`}
-                                        onChange={handleChange}
-                                        value={returnText(formData[key])} /> */}
                                 </td>
                             )
                         })}
@@ -79,7 +99,7 @@ function EditTable({objectBasedInfo, action, showHeading=true}) {
                                     Submit
                             </button>
                         </td>
-                    </tr>
+                    </tr> */}
                 </tbody>
             </table>
         </form>

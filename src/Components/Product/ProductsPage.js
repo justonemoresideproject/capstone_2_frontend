@@ -13,14 +13,14 @@ import ProductList from './ProductList'
 function ProductsPage() {
     const dispatch = useDispatch()
     const products = useSelector(store => store.products)
-    const queryProducts = useSelector(store => store.products.queryProducts)
+    const queryProducts = useSelector(store => store.queryReducer.queryProducts)
     const productKeys = Object.keys(products)
     const store = useSelector(store => store)
 
     console.log(queryProducts)
 
     useEffect(function() {
-        dispatch(getProductsFromApi())
+        products === undefined && dispatch(getProductsFromApi())
     }, [dispatch, queryProducts])
 
     return (
@@ -29,8 +29,8 @@ function ProductsPage() {
                 <>
                     <ProductQueryForm products={products} />
                     {queryProducts == undefined ? 
-                        <ProductList products={products} rows={3} /> :
-                        <ProductList products={queryProducts} rows={3} />
+                        <ProductList products={products} /> :
+                        <ProductList products={queryProducts}/>
                     }
                 </>
             }

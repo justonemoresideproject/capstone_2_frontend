@@ -78,3 +78,9 @@ export const createNewObject = (object) => {
 
     return newObj
 }
+
+export const isObject = (dataType) => {
+    if(typeof(dataType) === 'string' || typeof(dataType) === 'object' && dataType.length === undefined) return true
+    
+    return false
+}

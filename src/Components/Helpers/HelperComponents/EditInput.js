@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { returnType, returnText, returnSelect } from '../TextFunctions'
+import EditTable from './EditTable'
 import SelectComponent from './SelectComponent'
 
 function EditInput({name, handleChange, value}) {

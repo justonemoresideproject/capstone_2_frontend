@@ -12,3 +12,14 @@
 .ItemList>thead>tr>th {
     font-size: 1.6rem
 }
+
+.ItemListButton {
+    font-size:1.4rem;
+    border: none;
+    color: rgb(133, 79, 21);
+    background: none;
+}
+
+.ItemListButton:hover {
+    color:white;
+}

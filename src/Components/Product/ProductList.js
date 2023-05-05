@@ -10,8 +10,11 @@ import { returnTable } from '../Helpers/AlgFunctions'
 import ProductInfo from './ProductInfo';
 
 // Accepts an object of products and returns a grid of product images/information
-function ProductList(products, columns=3, height=90, width=100) {
+function ProductList({products, columns=3, height=90, width=100}) {
+    console.log(columns)
+    console.log(products)
     const productTable = returnTable(products, columns)
+    console.log(productTable)
 
     const [selectedProduct, setSelectedProduct] = useState(null)
 
@@ -27,19 +30,20 @@ function ProductList(products, columns=3, height=90, width=100) {
             />
         }
             <table className='productTable' style={{
-                "width": `${width}`
+                "width": `${width}%`
             }}>
                 <tbody>
                     {productTable.map((row, index) => {
                         const columnKeys = Object.keys(row[0])
                         return (
                             <tr className='productTableTr' key={`${index}`}>
-                                {columnKeys.map((id, indexTwo) => {
+                                {row.map((product, indexTwo) => {
                                     return(
                                         <Product 
-                                            product={row[0][id]} 
+                                            product={product} 
                                             row={columnKeys.length}
                                             key={`${index}-${indexTwo}`}
+                                            width={Math.floor(width / columns)}
                                             setSelectedProduct={setSelectedProduct} />)
                                 })}
                             </tr>

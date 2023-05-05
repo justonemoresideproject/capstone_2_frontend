@@ -11,6 +11,11 @@ import { updateOrderToApi } from '../../actions/Order'
  * Authorization: Admin
  */
 
+/**
+ * 
+ * @returns list of orders
+ */
+
 function Orders() {
     const orders = useSelector(store => store.admin.orders)
 

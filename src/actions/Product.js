@@ -43,7 +43,7 @@ function sendQueryFromApi(searchFilters) {
     return async function(dispatch) {
         const res = await ProductApi.query(searchFilters)
 
-       dispatch(setQueryProducts(res.products))
+        dispatch(setQueryProducts(res.products))
     }
 }
 
@@ -97,4 +97,4 @@ function removeProduct(id) {
     }
 }
 
-export { sendQueryFromApi, removeProductFromApi, getProductFromApi, addProductToApi, getProductsFromApi, addProduct, setProductIds, removeProduct }
+export { sendQueryFromApi, removeProductFromApi, getProductFromApi, addProductToApi, getProductsFromApi, addProduct, setProductIds, removeProduct, setQueryProducts }

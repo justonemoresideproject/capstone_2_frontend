@@ -8,7 +8,7 @@ import cart from './CartReducer'
 import customers from './CustomerReducer'
 // import orders from './OrderReducer'
 import products from './ProductReducer'
-// import query from './QueryReducer'
+import queryReducer from './QueryReducer'
 import error from './ErrorReducer'
 
 export default combineReducers({
@@ -18,5 +18,6 @@ export default combineReducers({
     customers,
     products,
     user,
+    queryReducer,
     error
 })

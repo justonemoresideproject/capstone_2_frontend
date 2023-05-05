@@ -1,5 +1,5 @@
 .checkoutTable {
-    width: 100vw;
+    width: 90vw;
     height: 100%;
 
     font-family: Arial, Helvetica, sans-serif;
@@ -12,6 +12,12 @@
 
     border: solid black;
     border-spacing: 0px;
+
+    left: auto;
+    right: auto;
+
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .checkoutTable>thead>tr {

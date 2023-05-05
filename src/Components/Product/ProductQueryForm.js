@@ -3,11 +3,11 @@ import '../ComponentCss/ProductQueryForm.css'
 import React, {useState, useEffect} from 'react'
 import { useDispatch } from 'react-redux'
 
-import { sendQueryFromApi } from '../../actions/Product'
+import { sendQueryFromApi, setQueryProducts } from '../../actions/Product'
 import ProductApi from '../../API/ProductApi'
 import { findProducts } from '../Helpers/FindProducts'
 
-function ProductQueryForm(products) {
+function ProductQueryForm({products}) {
     const dispatch = useDispatch();
 
     const INITIAL_STATE = {
@@ -29,14 +29,62 @@ function ProductQueryForm(products) {
 
     const handleSubmit = (e) => {
         if(e !== undefined && e.preventDefault !== undefined) { 
-            e.preventDefault() }
-        setIsLoading(true);
+            e.preventDefault() 
+        }
+        setIsLoading(true)
+        console.log(products)
         const matchingProducts = findProducts(products, formData.price, formData.name)
-        dispatch(sendQueryFromApi(matchingProducts))
+        console.log(matchingProducts)
+        dispatch(setQueryProducts(matchingProducts))
     }
 
     return (
-        <table className='formWrapper'>
+        <form onSubmit={handleSubmit}>
+            <div className='queryWrapper'>
+                <select 
+                    className='selectInput' 
+                    id="price" 
+                    name="price" 
+                    onChange={handleChange}>
+                    <option value={Infinity}>
+                        All
+                    </option>
+                    <option value={5}>
+                        Under 5
+                    </option>
+                    <option value={10}>
+                        Under 10
+                    </option>
+                    <option value={20}>
+                        Under 20
+                    </option>
+                    <option value={50}>
+                        Under 50
+                    </option>
+                </select>
+                <select 
+                    className='selectInput'
+                    id="order" 
+                    name="order">
+                        <option value={formData.descOrder = true}>
+                            Descending
+                        </option>
+                        <option value={formData.descOrder = false}>
+                            Ascending
+                        </option>
+                    </select>
+                <input 
+                    type='text' 
+                    className='textInput'
+                    name='name'
+                    onChange={handleChange}
+                    value={formData.name} />
+                <button
+                    className='queryButton'>
+                    Search                    
+                </button>
+            </div>
+        {/* <table className='formWrapper'>
             <tbody>
             <tr>
                 <td className='queryTd'>
@@ -85,14 +133,14 @@ function ProductQueryForm(products) {
                 </td>
                 <td className='queryTd'>
                     <button
-                        className='queryButton'
-                        onClick={() => handleSubmit()}>
+                        className='queryButton'>
                         Search                    
                     </button>
                 </td>
             </tr>
             </tbody>
-        </table>
+        </table> */}
+        </form>
     )
 
     return (

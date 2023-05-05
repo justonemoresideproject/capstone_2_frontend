@@ -26,6 +26,7 @@ function CustomerInfo() {
         city: '',
         state: '',
         country: '',
+        postalCode: '',
         addressType: 'home',
         phone: ''
     };
@@ -220,6 +221,11 @@ function CustomerInfo() {
                             </label>
                         </td>
                         <td>
+                            <label className='label'>
+                                Postal Code
+                            </label>
+                        </td>
+                        <td>
                             <label 
                                 htmlFor='addressType' 
                                 className='label'>
@@ -235,6 +241,14 @@ function CustomerInfo() {
                                 name="street"
                                 onChange={handleChange}
                                 value={formData.street} />
+                        </td>
+                        <td>
+                            <input
+                                type='number'
+                                className='input'
+                                name='postalCode'
+                                onChange={handleChange}
+                                value={formData.postalCode} />
                         </td>
                         <td>
                             <select 

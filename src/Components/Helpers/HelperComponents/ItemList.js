@@ -35,13 +35,15 @@ function ItemList({items, edit=false, action}) {
                 <tbody>
                     {itemKeys.map((key, index) => {
                         return (
-                            <Item 
-                                headers={headers}
-                                item={items[key]} 
-                                key={`${index}-${items.id}`}
-                                edit={edit}
-                                selectItem={selectItem}
-                            />
+                            <>
+                                <Item 
+                                    headers={headers}
+                                    item={items[key]} 
+                                    key={`${index}-${items.id}`}
+                                    edit={edit}
+                                    selectItem={selectItem}
+                                />
+                            </>
                         )
                     })}
                 </tbody>

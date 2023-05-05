@@ -7,7 +7,8 @@ import ProductImage from './ProductImage'
 import ProductInfo from './ProductInfo'
 import { addItemToCart } from '../../actions/Cart'
 
-function Product({product, setSelectedProduct}) {
+function Product({product, setSelectedProduct, width}) {
+    console.log(product)
     const dispatch = useDispatch();
     const INITIAL_STATE = { 
         id : product.id,
@@ -45,7 +46,7 @@ function Product({product, setSelectedProduct}) {
     
     return (
         <td className={`productTd${dropDown ? '-info' : ''}`} key={`${product.id}`} style={{
-            "width": "100%",
+            "width": `${width}%`,
             "height": "100%"
         }}>
             <ProductImage 
