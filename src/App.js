@@ -30,6 +30,13 @@ function App() {
     }
   }, [dispatch])
 
+  // try{
+
+  // } catch (e) {
+  //   return (
+  //     <BrokenApp />
+  //   )
+  // }
   return (
     <div id="App">
       <header id="App-header">

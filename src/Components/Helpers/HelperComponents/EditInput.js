@@ -11,15 +11,12 @@ function EditInput({name, handleChange, value}) {
         console.log('SelectComponent Chosen')
         return <SelectComponent name={name} handleChange={handleChange} value={value}/>
     }
-
-    return (
-        <input
+    return <input
             type={type}
             className='input'
             name={name}
             onChange={handleChange}
             value={value} />
-    )
 }
 
 export default EditInput

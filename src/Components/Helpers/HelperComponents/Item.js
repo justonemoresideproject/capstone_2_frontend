@@ -2,13 +2,16 @@ import React, { useState } from 'react'
 import EditTable from './EditTable'
 
 import { returnText } from '../TextFunctions'
+import EditInput from './EditInput'
 
 function Item({headers, item, edit, selectItem}) {
+    const unchangableItems = ["id", "createdAt"]
+    const selectableItems = ["deliveredStatus"]
 
     return (
-        <tr>
+        <tr key={`${item}-row`}>
             {headers.map((key, index) => {
-                return key === "id" ? 
+                return unchangableItems.includes(key) ? 
                 <td key={`${key}-${index}`}>
                     {returnText(item[key])}
                 </td>
@@ -16,8 +19,9 @@ function Item({headers, item, edit, selectItem}) {
                 <td key={`${key}-${index}`}>
                     <button 
                         className='ItemListButton'
-                        onClick={() => selectItem({key: item[key]})}>
-                        {key === "orderItems" ? "Edit Items" : returnText(item[key])}
+                        onClick={() => selectItem(item, key)}>
+                        {key === "orderItems" ? 
+                        "View Items" : returnText(item[key])}
                     </button>
                 </td>
                 }

@@ -1,42 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
 
-import { getCustomerFromApi } from '../../actions/Customer'
-import { getAddressFromApi } from '../../actions/Address'
+import { returnText } from '../Helpers/TextFunctions'
 
-function Order(order) {
-    const dispatch = useDispatch()
-    const orderKeys = Object.keys(order)
-    const customers = useSelector(store => store.customers)
-    const addresses = useSelector(store => store.addresses)
-
-    useEffect(function() {
-        dispatch(getCustomerFromApi(order.customerId))
-        dispatch(getAddressFromApi(order.addressId))
-    }, [customers, addresses])
-
+function Order({order, selectItem}) {
+    const unchangableItems = ["id", "createdAt"]
     return (
         <tr>
-            {orderKeys.map(key => {
-                if(key == "customerId"){
-                    return (
-                        <td>
-                            {customers[order[key]].firstName} {customers[order[key]].lastName}
-                        </td>
-                    )
-                }
-                if(key == "addressId"){
-                    return (
-                        <td>
-                            {addresses[order[key]].address}
-                        </td>
-                    )
-                }
-                return (
-                    <td>=
-                        {order[key]}
-                    </td>
-                )
+            {Object.keys(order).map((key, index) => {
+                return unchangableItems.includes(key) ? 
+                <td key={`${key}-${index}`}>
+                    {returnText(order[key])}
+                </td>
+                :
+                <td key={`${key}-${index}`}>
+                    <button 
+                        className='ItemListButton'
+                        onClick={() => selectItem(order, key)}>
+                        {key === "orderItems" ? 
+                        "View Items" : returnText(order[key])}
+                    </button>
+                </td>
             })}
         </tr>
     )

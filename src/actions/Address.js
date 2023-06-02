@@ -44,7 +44,7 @@ function addAddressToApi(addressInfo) {
     }
 } 
 
-function updateAddress(token, addressInfo) {
+function updateAddressToApi(token, addressInfo) {
     return async function(dispatch) {
         const res = await AddressApi.update(token, addressInfo, addressInfo.id)
     
@@ -60,4 +60,4 @@ function removeAddress(id) {
     return {type: REMOVE_ADDRESS, payload: id}
 }
 
-export { getAddressFromApi, getAddressesFromApi, addAddressToApi, updateAddress, addAddress, removeAddress }
+export { getAddressFromApi, getAddressesFromApi, addAddressToApi, updateAddressToApi, addAddress, removeAddress }

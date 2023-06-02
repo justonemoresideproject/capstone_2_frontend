@@ -11,8 +11,6 @@ import ProductInfo from './ProductInfo';
 
 // Accepts an object of products and returns a grid of product images/information
 function ProductList({products, columns=3, height=90, width=100}) {
-    console.log(columns)
-    console.log(products)
     const productTable = returnTable(products, columns)
     console.log(productTable)
 

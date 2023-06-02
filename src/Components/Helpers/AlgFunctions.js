@@ -1,3 +1,5 @@
+const _ = require('lodash')
+
 // Takes an object of products and the number of products per row. Returns 
 /**
  * 
@@ -80,7 +82,20 @@ export const createNewObject = (object) => {
 }
 
 export const isObject = (dataType) => {
-    if(typeof(dataType) === 'string' || typeof(dataType) === 'object' && dataType.length === undefined) return true
+    if(typeof(dataType) === 'string' || typeof(dataType) === 'object') {
+        if(dataType.length === undefined) return true
+    }
     
     return false
 }
+
+export const objHasNestedObj = (obj) => {
+    let isNested = false
+    Object.keys(obj).forEach(key => {
+        if(isObject(obj[key])) isNested = true
+    })
+    return isNested
+}
+
+const testObj = {"a": 1, "b": {"c": 3, "d": 4}}
+const testObjTwo = {"a": 1, "b": 3}

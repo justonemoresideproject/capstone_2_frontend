@@ -20,7 +20,9 @@ function Customers() {
     }
 
     return (
-        <ItemList items={customers} edit={true} action={updateCustomerToApi} />
+        <div className='baseElement'>
+            <ItemList items={customers} edit={true} action={updateCustomerToApi} />
+        </div>
     )
 }
 

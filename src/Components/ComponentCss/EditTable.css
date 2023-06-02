@@ -1,5 +1,5 @@
-#editTableForm {
-    font-size: 100%;
+.editTableForm {
+    font-size: 14px;
 
     margin-top: 3%;
     margin-bottom: 3%;
@@ -10,29 +10,76 @@
     display: block;
 }
 
-#editTableForm>table {
+.editTableForm>table {
     table-layout: fixed;
     border-collapse: separate;
     box-sizing: border-box;
 }
 
-#editTableForm>table>tbody>tr>td>input[type="number"] {
+.editTableForm>thead>tr>th {
+    color: black
+}
+
+.editTableForm>table>tbody>tr>td>input[type="number"] {
     min-width: 9ch;
     width: 30%;
 }
 
-#editTableForm>table>tbody>tr>td>input[type="text"] {
+.editTableForm>table>tbody>tr>td>input[type="text"] {
     min-width: 18ch;
 }
 
-#editTableForm>table>tbody>tr>td>select {
+.editTableForm>table>tbody>tr>td>select {
     min-width: 16ch;
 }
 
-#editTableForm>table>tbody>tr>td>input[type="date"] {
+.editTableForm>table>tbody>tr>td>input[type="date"] {
     min-width: 16ch;
 }
 
-#editTableForm>table>tbody>tr {
+.editTableForm>table>tbody>tr {
+    align-content: space-between;
+}
+
+.editTables {
+    table-layout: fixed;
+    border-collapse: separate;
+    box-sizing: border-box;
+    
+    font-size: 100%;
+
+    margin-top: 3%;
+    margin-bottom: 3%;
+    
+    width: 100%;
+    max-width: 100vw;
+
+    height: 100%;
+
+    display: block;
+}
+
+.editTableForm>tr>th {
+    color: black
+}
+
+.editTableForm>tr>td>input[type="number"] {
+    min-width: 9ch;
+    width: 30%;
+}
+
+.editTableForm>tr>td>input[type="text"] {
+    min-width: 18ch;
+}
+
+#editTableForm>tr>td>select {
+    min-width: 16ch;
+}
+
+#editTableForm>tr>td>input[type="date"] {
+    min-width: 16ch;
+}
+
+#editTableForm>tr {
     align-content: space-between;
 }
